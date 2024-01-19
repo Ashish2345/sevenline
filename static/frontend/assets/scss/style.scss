@@ -1,0 +1,17 @@
+// default imports
+@import "./components/variables";
+@import "./components/mixins";
+@import "./components/globals";
+
+// components imports
+@import "./components/header";
+@import "./components/hero";
+@import "./components/slider";
+@import "./components/sections";
+@import "./components/footer";
+
+// importing pages
+@import './pages/about-page';
+@import './pages/pricing';
+@import './pages/feature';
+@import './pages/contact';

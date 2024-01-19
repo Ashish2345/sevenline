@@ -1,0 +1,159 @@
+.footer__section {
+    width: 100%;
+
+    &-nav {
+        padding: 3rem 0;
+        background: #eee;
+
+        .custom-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            grid-gap: 2rem;
+
+            .footer__logo {
+                a {
+                    img {
+                        max-width: 120px;
+                    }
+                }
+            }
+
+            .footer__desc {
+                padding: 0 10rem;
+                font-size: 18px;
+                line-height: 1.5;
+                text-align: center;
+
+                @media (max-width: 992px) {
+                    padding: 0 1rem;
+                }
+            }
+
+            .footer__menu {
+                display: flex;
+                align-content: center;
+                flex-wrap: wrap;
+                grid-gap: 2rem;
+
+                li {
+                    a {
+                        color: black;
+                        font-size: 18px;
+                        font-weight: 400;
+                        transition: all 300ms ease-in-out;
+
+                        &:hover {
+                            color: var(--secondary-color);
+                        }
+                    }
+                }
+            }
+
+            .social__media {
+                display: flex;
+                flex-direction: column;
+                grid-gap: 1rem;
+                align-items: center;
+                justify-content: center;
+
+                label {
+                    text-align: center;
+                    color: var(--secondary-color);
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+
+                .footer__menu {
+                    grid-gap: 1rem;
+
+                    a {
+                        position: relative;
+
+                        .footer__icon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 2.5rem;
+                            height: 2.5rem;
+
+                            &:hover {
+                                &::before {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+
+                                svg,
+                                i {
+                                    color: white;
+                                }
+                            }
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 0;
+                                height: 0;
+                                border-radius: 50px;
+                                background: var(--secondary-color);
+                                transition: all 300ms var(--cubic-bezier);
+                            }
+
+                            svg,
+                            i {
+                                display: flex;
+                                position: relative;
+                                font-size: 16px;
+                                transition: all 300ms ease-in-out;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .copyright {
+        padding: 0.8rem 0;
+        background: var(--primary-color);
+
+        &__content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            column-gap: 1rem;
+            row-gap: .5rem;
+
+            .copyright__text {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                color: white;
+            }
+
+            .copyright__menu {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                grid-gap: 2rem;
+                flex-wrap: wrap;
+
+                a {
+                    color: white;
+                    font-size: 16px;
+                    position: relative;
+                    transition: all 300ms ease-in-out;
+
+                    &:hover {
+                        color: var(--secondary-color);
+                    }
+                }
+            }
+        }
+    }
+}

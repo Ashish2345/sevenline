@@ -1,0 +1,197 @@
+.hero__section {
+  width: 100%;
+  padding: 3rem 0;
+  overflow-x: hidden;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .hero__text {
+      @media (max-width: 768px) {
+        text-align: center;
+      }
+
+      .ting__top {
+        span {
+          color: white;
+          font-weight: 500;
+          font-size: 20px;
+        }
+      }
+
+      .hero__title {
+        font-weight: bold;
+        line-height: 1.2;
+        color: white;
+        font-size: 52px;
+        letter-spacing: 0.5px;
+
+        @media (max-width: 1536px) {
+          font-size: 42px;
+        }
+
+        @media (max-width: 992px) {
+          font-size: 32px;
+        }
+      }
+
+      .hero__desc {
+        color: white;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        margin-top: 1rem;
+      }
+
+      .hero__cta {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 1rem;
+
+        @media (max-width: 1336px) {
+          margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+          align-items: center;
+        }
+
+        .cta__title {
+          color: white;
+          font-weight: 600;
+          font-size: 24px;
+        }
+
+        .hero__cta-btn {
+          width: fit-content;
+          border-radius: 50px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            .text {
+              color: white !important;
+
+              &::before {
+                width: 100%;
+              }
+            }
+
+            .icon {
+              background: white;
+              transition-delay: 300ms;
+
+              svg,
+              i {
+                color: var(--secondary-color);
+                transition-delay: 300ms;
+              }
+            }
+          }
+
+          .text {
+            position: relative;
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 500;
+            padding: 0 2rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            z-index: 1;
+            transition: all 300ms ease-in-out;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              background: var(--secondary-color);
+              width: 0;
+              height: 100%;
+              z-index: -1;
+              transition: all 300ms ease-in-out;
+            }
+          }
+
+          .icon {
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.2rem;
+            height: 3rem;
+            position: relative;
+            transition: all 300ms ease-in-out;
+
+            svg,
+            i {
+              display: flex;
+              font-size: 18px;
+              color: white;
+              transition: all 300ms ease-in-out;
+            }
+          }
+        }
+      }
+
+      .ting__cta {
+        margin-top: 2rem;
+        display: flex;
+
+        &-btn {
+          display: flex;
+          align-items: center;
+          grid-gap: 1rem;
+          color: white;
+          font-size: 22px;
+          position: relative;
+
+          &:hover {
+            &::before {
+              width: 100%;
+            }
+
+            svg,
+            i {
+              transform: translateX(-5px);
+            }
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 120%;
+            left: 0;
+            width: 0;
+            height: 0.2rem;
+            background: white;
+            transition: all 500ms var(--cubic-bezier);
+          }
+
+          svg,
+          i {
+            font-size: 22px;
+            display: flex;
+            transition: all 500ms var(--cubic-bezier);
+          }
+        }
+      }
+    }
+
+    .hero__img {
+    }
+  }
+}

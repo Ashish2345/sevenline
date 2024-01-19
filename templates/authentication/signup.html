@@ -1,0 +1,92 @@
+
+{% extends 'authentication/base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card overflow-hidden">
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="text-primary p-4">
+                                    <h5 class="text-primary">Free Register</h5>
+                                    <p>Get your free account now.</p>
+                                </div>
+                            </div>
+                            <div class="col-5 align-self-end">
+                                <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0"> 
+                       
+                        <div class="p-2 mt-2">
+                            <form class="needs-validation" method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                
+                                <div class="mb-3">
+
+                                        {% if field.label == 'First name' %}
+                                            <div class="signup_names mb-3">
+
+                                                <label class="form-label">{{ field.label }}{% if field.field.required %}* {% endif %}</label>
+                                            {{ field }}
+                                            <span style="color:red;">{{ field.errors|striptags|safe }}</span>
+                                                
+                                            </div>
+                                        {% elif  field.label == 'Last name'%}
+                                            <div class="signup_names mb-3" id="signup_lastName" >
+
+                                                <label class="form-label">{{ field.label }}{% if field.field.required %}* {% endif %}</label>
+                                            {{ field }}
+                                            <span style="color:red;">{{ field.errors|striptags|safe }}</span>
+                                                
+                                            </div>
+                                    {% else %}
+
+                                    <label class="form-label">{{ field.label }}{% if field.field.required %}* {% endif %}</label>
+                                    {{ field }}
+                                    <span style="color:red;">{{ field.errors|striptags|safe }}</span>
+                                    {% endif %}
+                                </div>
+                                
+                                
+                                
+                                {% endfor %}  
+                             
+                               
+        
+            
+                                <div class="mt-4 d-grid">
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Register</button>
+                                </div>
+
+                               
+        
+                                <div class="mt-4 text-center">
+                                    <p class="mb-0">By registering you agree to the System <a href="#" class="text-primary">Terms and Conditions</a></p>
+                                </div>
+                            </form>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    
+                    <div>
+                        <p>Already have an account ? <a href="{% url 'accounts:login' %}" class="fw-medium text-primary"> Login</a> </p>
+                        <p>©
+                            <script>document.write(new Date().getFullYear())</script> Thirdfactor by System</p>                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

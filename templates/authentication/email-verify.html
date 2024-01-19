@@ -1,0 +1,294 @@
+
+
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+{% block css %}
+<style>
+
+    input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        .otp-input-fields {
+            margin: auto;
+            background-color: white;
+            box-shadow: 0px 0px 8px 0px #02025044;
+            max-width: 400px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px;
+          }
+          .otp-input-fields input {
+            height: 40px;
+            width: 40px;
+            background-color: transparent;
+            border-radius: 4px;
+            border: 1px solid #556ee6;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            /* Firefox */
+          }
+          .otp-input-fields input::-webkit-outer-spin-button, .otp-input-fields input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          .otp-input-fields input[type=number] {
+            -moz-appearance: textfield;
+          }
+          .otp-input-fields input:focus {
+            border-width: 2px;
+            border-color: #556ee6;
+            font-size: 20px;
+          }
+          
+
+    </style>
+
+
+{% endblock css %}
+{% block content %}
+        <div class="account-pages my-3 pt-sm-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center mb-5 text-muted">
+                            <a href="index.html" class="d-block auth-logo">
+                                <img src="{% if site_settings_backend.logo_image2 %}{{site_settings_backend.logo_image2.url}}{% else %}{% static 'assets/images/logo-2.png' %}{% endif %}" alt="" height="60" class="auth-logo-dark mx-auto">
+                             
+                            </a>
+                            <p class="mt-3 verify_text">Verify Your Email</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <div class="row justify-content-center change_content">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="card">
+    
+                            <div class="card-body">
+    
+                                <div class="p-2">
+                                    <div class="text-center">
+    
+                                        <div class="avatar-md mx-auto">
+                                            <div class="avatar-title rounded-circle bg-light">
+                                                <i class="bx bxs-envelope h1 mb-0 text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 mt-4">
+    
+                                            <h4>Verify your email</h4>
+                                            <p class="mb-5">Please enter the 6 digit code sent to <span
+                                                    class="fw-semibold">{{email}}</span></p>
+                                                <div class="otp-input-fields">
+                                                    <input type="number" class="otp__digit otp__field__1" name="user_otp" >
+                                                    <input type="number" class="otp__digit otp__field__2" name="user_otp" >
+                                                    <input type="number" class="otp__digit otp__field__3" name="user_otp" >
+                                                    <input type="number" class="otp__digit otp__field__4" name="user_otp" >
+                                                    <input type="number" class="otp__digit otp__field__5" name="user_otp" >
+                                                    <input type="number" class="otp__digit otp__field__6" name="user_otp" >
+                                                  </div>
+                                                  
+                                                
+                                                <div class="mt-4">
+                                                    <button type="button" class="btn btn-success w-md {% if recover_pass %}verify_otp_pass {% else %}verify_otp{% endif %} "> Confirm </button>
+                                                </div>
+                                            {% comment %} </form> {% endcomment %}
+    
+                                           
+                                        </div>
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <p>Resend code <span id="counter"></span><span id="verifiBtn" data-url="{% url 'accounts:resend-otp' %}"></span></p>
+                            <p>©
+                                <script>document.write(new Date().getFullYear())</script> {{site_settings_backend.title}} Project by System</p>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="success_content">
+
+                </div>
+
+                
+            </div>
+        </div>
+        {% endblock content %}
+
+
+
+        {% block js %}
+        
+        <script>
+        function countdown() {
+            var seconds = 60;
+            function tick() {
+            var counter = document.getElementById("counter");
+            seconds--;
+            counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+            if (seconds > 0) {
+                setTimeout(tick, 1000);
+            } else {
+                document.getElementById("verifiBtn").innerHTML = `
+                <a href="#" class="fw-medium text-primary" onclick="resendtimer()" id="resend_time_id">: Resend </a> 
+                `;
+                document.getElementById("counter").innerHTML = "";
+            }
+            }
+            tick();
+        }
+        countdown();
+
+        function resendtimer()
+        {
+            countdown()
+            document.getElementById("resend_time_id").innerHTML = "";
+            $.ajax({
+                url:  $(`#verifiBtn`).attr("data-url"),
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: jQuery('meta[name="csrf-token"]').attr("content"),
+                },
+                dataType: "html",
+                success: function (response) {
+                   
+                    toastr.success("OTP send Successfully!!")
+
+                },
+                
+            });
+
+        }
+
+           
+
+            {% if not recover_pass %}
+            $(document).ready(function() {
+                $(".verify_otp").click(function(){
+                    let all_otp = ""
+                    let all_otps_val = document.querySelectorAll(".otp__digit")
+                    all_otps_val.forEach(p => all_otp+=p.value);
+                    $.ajax({
+                        type: "POST",
+
+                        data: {
+                            "otp":all_otp,
+                            "csrfmiddlewaretoken": $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            if(data.success == false)
+                            {
+                                toastr.error(data.message)
+                                all_otps_val.forEach(p => p.value = "");
+
+                            }
+                            else{
+                                toastr.success("Successfully Verified!!")
+                                $(".change_content").remove()
+                                $(".verify_text").remove()
+                                $(".success_content").append(
+                                    `
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8 col-lg-6 col-xl-5">
+                                            <div class="card">
+                                                
+                                                <div class="card-body"> 
+                                                    
+                                                    <div class="p-2">
+                                                        <div class="text-center">
+                    
+                                                            <div class="avatar-md mx-auto">
+                                                                <div class="avatar-title rounded-circle bg-light">
+                                                                    <i class="bx bx-mail-send h1 mb-0 text-primary"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="p-2 mt-4">
+                                                                <h4>Success !</h4>
+                                                                <p class="text-muted">${data.message}</p>
+                                                                <div class="mt-4">
+                                                                    <a href="{% url 'accounts:login' %}" class="btn btn-success">Return</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                </div>
+                                            </div>
+                                          
+                    
+                                        </div>
+                                    </div>
+                                    `
+                                )
+
+                            }
+
+                        }
+                    })                    
+                    
+                }); 
+            });
+            {% else %}
+            $(document).ready(function() {
+                $(".verify_otp_pass").click(function(){
+                    let all_otp = ""
+                    let all_otps_val = document.querySelectorAll(".otp__digit")
+                    all_otps_val.forEach(p => all_otp+=p.value);
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            "otp":all_otp,
+                            "csrfmiddlewaretoken": $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            if(data.success == false)
+                            {
+                                toastr.error(data.message)
+                                all_otps_val.forEach(p => p.value = "");
+                            }
+                            else{
+                          
+                                toastr.success(data.message)
+                               
+                                url=window.location.origin+data.success_url.success_url
+                                
+                                window.location.replace(url);
+                                
+
+
+                            }
+
+                        }
+                    })                    
+                    
+                }); 
+            });
+            {% endif %}
+
+            
+
+
+ 
+
+
+        </script>
+        
+        
+        
+        {% endblock js %}
+        <!-- JAVASCRIPT -->
+      
+        
+        <!-- App js -->
+       
+ 

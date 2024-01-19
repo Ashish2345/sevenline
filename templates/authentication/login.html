@@ -1,0 +1,131 @@
+
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="account-pages my-3 pt-sm-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center mb-5 text-muted">
+                    <a href="" class="d-block auth-logo">
+                        <img src="{% if site_settings_backend.logo_image2 %}{{site_settings_backend.logo_image2.url}}{% else %}{% static 'assets/images/logo-2.png' %}{% endif %}" alt="" height="100" class="auth-logo-dark mx-auto">
+                     
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card overflow-hidden">
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="text-primary" style="padding:20px 20px 2px">
+                                    <h5 class="text-primary">Welcome Back !</h5>
+                                    <p>Sign in to your System Account </p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="card-body pt-0"> 
+                        <div class="auth-logo">
+                           
+
+                            <a href="index.html" class="auth-logo-dark mb-4">
+                               
+                            </a>
+                        </div>
+                        <div class="p-2">
+                            <form class="form-horizontal" method="post">
+                                {% csrf_token %}
+
+
+                                {% if msg_error %}
+                                <div class="non-field-errors">
+                                    <p class="form-error" style="color: red;">{{ msg_error }}</p>
+                                </div>
+                                {% endif %} 
+                                
+                                {% if form.non_field_errors %}
+                                
+                                <div class="non-field-errors">
+                                    {% for error in form.non_field_errors %}
+                                    <p class="form-error" style="color: red;">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+
+                                {% elif form.errors %}
+                                {% comment %} <div class="alert alert-danger">
+                                    <strong>Error!</strong> <span>Please correct the following errors:</span> {% endcomment %}
+                                    <strong style="color: red;">Error!</strong> <span style="color: red;">Please correct the following error:</span> 
+                                        {% for field, errors in form.errors.items %}
+                                            {% for error in errors %}
+                                            <p class="form-error mt-2" style="color: red;">{{ field|title }}:  {{ error }} </p>
+                                            {% endfor %}
+                                        {% endfor %}
+                                {% comment %} </div> {% endcomment %}
+                                {% endif %} 
+
+
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Email *</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter email" required>
+                                </div>
+        
+                                <div class="mb-3">
+                                    <label class="form-label">Password *</label>
+                                    <div class="input-group auth-pass-inputgroup">
+                                        <input type="password" name="password" id = "password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon" required>
+                                        <button class="btn btn-light " type="button" id="password-addon" ><i class="mdi mdi-eye-outline" ></i></button>
+                                    </div>
+                                </div>
+
+								{{ form.captcha }}
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-check" name="remember_me">
+                                    <label class="form-check-label" for="remember-check">
+                                        Remember me
+                                    </label>
+                                </div>
+
+								<div class="form-check"
+									id="captcha-div"
+									class="d-none g-recaptcha"
+									data-sitekey="6LfNRCkeAAAAAI5T7uiRjTRJD4R3mRDUxv4lN1m_"
+						         ></div>
+                                
+                                <div class="mt-3 d-grid">
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
+                                </div>
+    
+                               
+                                <div class="mt-4 text-center">
+                                    <a href="{% url 'accounts:recover-pass' %}" class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot your password?</a>
+                                </div>
+                            </form>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    
+                    <div>
+                        <p>Go Back To <a href="">Home</a> Page</p>
+                       <p>Don't have an accounts ? <a href="{% url 'accounts:signup' %}" class="fw-medium text-primary"> Signup now </a> </p>
+                        <p>©
+                            <script>document.write(new Date().getFullYear())</script> {{site_settings_backend.title}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

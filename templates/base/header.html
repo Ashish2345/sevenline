@@ -1,0 +1,191 @@
+{% load static %}
+{% block header%}
+        <header id="page-topbar">
+            <div class="navbar-header navbar-expand-lg">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box logo-nav">
+                       
+
+                        <a href="" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="{% if site_settings_backend.logo_image %}{{site_settings_backend.logo_image.url}} {% else %}{% static 'assets/images/side.png' %}{% endif %}" alt="" height="30" style="margin-left: -15px;">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{% if site_settings_backend.logo_image %}{{site_settings_backend.logo_image.url}} {% else %}{% static 'assets/images/side.png' %}{% endif %}" alt="" height="50">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                 
+                    <div class="css-credit" bis_skin_checked="1">
+                       
+                            <i class="bx bxs-dollar-circle" style=" font-size: 20px; top: 24px;  position: absolute; "> </i><strong id="total_credit"  style="padding-left: 22px; position: absolute;top: 23px"> {% if request.user.credit_user.first.credit %}{{request.user.credit_user.first.credit}}{% else %}0{% endif %}</strong>
+
+                          
+                            <span style=" margin-left: 39px;position: absolute;top: 22px ">
+                                <span href="" class="custom__tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Contact {{site_settings.contact_phone}} to Add Credit" style="cursor: pointer;color: #4458b8;">
+                                <strong style=" margin-left: 15px; ">+ More..</strong>
+                                </span>
+                            </span>
+
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    {% comment %} <form class="app-search d-none d-lg-block">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </form> 
+
+                    <div class="dropdown d-inline-block d-lg-none ms-2">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endcomment %}
+
+
+                    <div class="dropdown d-inline-block noti-nav">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bx bx-bell bx-tada"></i>
+                            <span class="badge bg-danger rounded-pill"  id="id_count">{{unread_count}}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0" key="t-notifications"> Notifications </h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        {% comment %} <a href="{% url 'account:noti-view-all' %}" class="small" key="t-view-all"> Mark all as read</a> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;" >
+                                <div id="noti_div">
+                                </div>
+                                {% for noti in notifications %}
+                                <a href="{% url 'account:noti-view' noti.id %}" class="text-reset notification-item">
+                                    
+                                    <div class="d-flex" {% if noti.viewed == False %} style="background-color: #f3f3f9;margin: 0px 12px;margin-bottom: 5px;"{% else %}style="margin: 0px 12px;"{% endif %}>
+                                        {% comment %} <div class="avatar-xs me-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="bx bx-check"></i>
+                                            </span>
+                                        </div> {% endcomment %}
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1" key="t-your-order">{{noti.title}}</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1" key="t-grammer">{{noti.message}}</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">{{ noti.created_date|timesince }} ago</span></p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                                {% endfor %}
+                                <div id="noti_div1">
+                                </div>
+                                <p>
+                                </p>
+                                <span style="margin: 38%; cursor: pointer; font-weight:600" id="load-more-btn">
+                                    Load More..</span>
+                                
+                               <p>
+                               </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="user-dropdown">
+
+                    
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           
+                            <span class="d-xl-inline-block d-ld-inline-block ms-1">{{request.user.username}}</span>
+                            <i class="mdi mdi-chevron-down d-ld-inline-block d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                           
+
+
+                            {% comment %} <div class="dropdown-menu dropdown-menu-end show" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 72px);" data-popper-placement="bottom-end"> {% endcomment %}
+                                <!-- item-->
+                                {% comment %} <a class="dropdown-item" href="{% url 'account:profile-view' user.id %}"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a> {% endcomment %}
+                                <br>
+                                <a class="dropdown-item" href="https://tingting.readthedocs.io/en/latest/"><i class="bx bxs-cog"></i> <span key="t-profile">API Docs</span></a>
+                                {% comment %} <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span key="t-my-wallet">My Wallet</span></a> {% endcomment %}
+                                {% comment %} <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
+                                <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a> {% endcomment %}
+                               <br>
+                                <a class="dropdown-item text-danger" id="logout_btn" href="{% url 'accounts:logout' %}" data-url=""><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>Log Out</a>
+                               
+                            {% comment %} </div> {% endcomment %}
+
+                                {% comment %} {% if user.has_usable_password %}
+                                <a class="dropdown-item" href=""><i class="bx bx-key font-size-16 align-middle me-1"></i> Change Password</a>
+                                {% else %}
+                                <a class="dropdown-item" href=""><i class="bx bx-key font-size-16 align-middle me-1"></i> Set Password</a>
+                                {% endif %}
+                                <a class="dropdown-item text-danger" id="logout_btn" href="" data-url="{% url 'account_logout' %}" onclick="logoutfunc();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>Log Out</a>
+                                {% endcomment %}
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+                    
+
+                </div>
+            </div>
+        </header>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var clickBtn = document.querySelectorAll('button');
+
+    
+    for (let i = 0; i < clickBtn.length; i++){
+        
+
+        clickBtn[i].addEventListener('click', () => {
+            
+            let getTooltip = document.querySelector('.custom__tooltip');
+           
+
+          
+         
+
+        })
+    }
+</script>
+{% endblock %}

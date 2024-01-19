@@ -1,0 +1,346 @@
+{% extends "base/index.html" %}
+
+{% block title %}System {% endblock %}
+
+{% block subtitle %}Profile{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<style>
+   
+    .button{
+    
+        display: inline;
+        float: right;
+        padding: 2px;
+    }
+
+    #contact_no{
+        border: 2px solid black;
+
+    }
+
+   h4{
+      text-align: center;
+   }
+
+   
+   @media screen and (max-width: 1175px) and (min-width:1000px) {
+    
+   
+         img{
+             width: 100px;
+             height: 100px;
+         }
+
+      
+
+    }
+
+    @media screen and (max-width: 559px) and (min-width:300px) {
+    
+
+    }
+
+    @media screen and (max-width: 640px) and (min-width:300px) {
+    
+      .row{
+
+      }
+   
+
+    }
+
+
+
+
+   
+</style>
+
+{% endblock %}
+
+{% block contents %}
+
+<div class="row">
+      <div class="col-lg-3 col-md-12">
+         <div class="card" >
+            <div class="card-block profile-image-circle">
+													
+             
+               
+                     <img class="rounded-circle shadow-4-strong mt-3" style = " 
+                     display:block;
+                     margin: 3px auto;
+                     
+                     "  
+                     width = "200"
+                     height = "200"
+                     alt="avatar2" src="https://ui-avatars.com/api/?background=0D8ABC&amp;color=fff&amp;name=Adwait+Upadhyaya&amp;size=256&amp;format=png"/>
+           
+
+            
+            <h4 class="profile-user mt-3">
+                
+                  {{user_obj.first_name}}&nbsp;{{user_obj.last_name}}
+               
+               </h4>
+
+
+               <p style = "text-align: center;">@ {{user_obj.username}}</p>
+
+                  
+                  <p style = "text-align: center;">{{user_obj.email}} 
+                     <span>
+                        <i class="bx bx-check-circle" style = "color:#0b8abb;
+                     font-size: 20px;
+                     margin-top:5px">
+                        </i>
+                     
+                     </span>
+                  </p>
+                  
+                  
+        
+            
+            
+         
+         </div>
+         </div>
+         <div class="card change_password">
+            <div class="card-body">
+               <div class="list-group profile-material-icons reset-space">
+                        
+                  <a class="list-group-item" href="{% url 'account:change-password' user_id %}" title="Activate">
+                     <i class="fa-solid fa-check"></i>&nbsp;Change Password</a>	
+
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <div class="col-lg-9 col-md-12">
+         <div class="card" style = "overflow:auto;">
+            <div class="card-body">
+
+
+
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">My Profile </a>
+                  </li>
+                  
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                     <div class="card-body">
+																			    
+                       
+                        
+
+                        <table class="table" id="detTable">
+                           <tbody>
+                              <tr>
+                                 <td><b>Name:</b></td>
+                                 <td>  {{user_obj.get_name|title}}</td>
+                              </tr>
+
+                              
+                              <tr>
+                                 <td><b>Mobile Number:</b></td>
+                                 <td>{{profile_obj.contact_no}}
+                                    {% if profile_obj.is_verified_contact %}
+                                    <span>
+                                       <i class="bx bx-check-circle" style = "color:#0b8abb;
+                                    font-size: 20px;
+                                    margin-top:5px">
+                                       </i>
+                                    
+                                    </span>
+                                    {% else %}
+                                    
+                                    <div style = "
+                                    
+                                    display: inline;
+                                    float:right;
+                                    ">
+                                    <a class = "btn btn-outline-primary btn-sm" href="{% url 'account:verify-number' %}">Verify Number</a>   
+                                 </div>
+                                    {% endif %}
+
+
+
+                                 </td>
+
+                                
+                              </tr>
+                              <tr>
+                                 <td><b>Email:</b></td>
+                                 <td>{{user_obj.email}} 
+                                    <div style = "
+                                    
+                                    display: inline;
+                                    float:right;
+                                    ">
+                                    <button class = "btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changeEmailModal">Change Email</button>   
+                                 </div>
+                                 </td>
+                              </tr>
+                             
+                              <tr>
+                                 <td><b>Permanent Address:</b></td>
+                                 <td>{{profile_obj.address}}
+                                 </td>
+                              </tr>
+                             
+                              
+                           </tbody>
+                        </table>
+                        <div style="text-align: right; margin-top:-32px; margin-bottom:15px;">
+                            <a class="btn btn-primary" style="margin-top: 37px;margin-right:10px;" data-bs-toggle="modal" data-bs-target="#updateProfile"> <i class="fa fa-pencil-alt"></i>&nbsp; Update Profile</a>
+                         </div>
+                     </div>
+
+
+
+
+
+                  </div>
+                  
+                  
+                </div>
+
+
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!--Change Email Modal-->
+
+<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog" aria-labelledby="changeEmailModal" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLongTitle">Change Email Address</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <form method="POST" action = "{% url 'account:change-email' user_id %}">
+
+         {% csrf_token %}
+            <div class="modal-body">
+                  <!--change enail form-->
+               
+                           <label for="email">New Email Address:</label>
+                           {{email_change_form.email}}
+                           
+                           <div class="mt-2" id="passwordCollapse">
+                           
+                              
+                              
+                              
+                           </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  
+               
+                     {% comment %} <button class="btn btn-primary next" onclick="showDiv()" type="button" data-bs-toggle="collapse" data-bs-target="#passwordCollapse" aria-expanded="false" aria-controls="passwordCollapse" id = "collapseBtn">
+                        Next
+                     </button> {% endcomment %}
+            
+                     <div id="submit" >
+                        <button class = "btn btn-primary"  type="button" id = "id_submit_button">Change</button>
+                     </div>
+                  </div>
+
+       </form>
+         
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+
+<!--Update Profile Modal-->
+ <div class="modal fade" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLongTitle">Update Profile</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form method = "post" action = "{% url 'account:profile-view' user_id%}">
+
+            {% csrf_token %}
+         <label for = "first_name" class = "mt-3">First Name: </label>
+         {{signup_form.first_name}}
+
+         <label for = "first_name" class = "mt-3">Last Name: </label>
+         {{signup_form.last_name}}
+
+         <label for = "first_name" class = "mt-3">Contact Number: </label>
+         {{form.contact_no}}
+
+         <label for = "first_name" class = "mt-3">Address: </label>
+         {{form.address}}
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <input type= "submit" value = "Submit"  class="btn btn-primary">
+        
+       </form>
+       </div>
+     </div>
+   </div>
+ </div>
+
+{% endblock %}
+{% block javascript %}
+
+<script>
+   $("#id_submit_button").click(function(e){
+      e.preventDefault()
+     
+      $("#passwordCollapse").html("")
+      $("#passwordCollapse").append(`
+      
+
+         <label for="email">Password:</label>
+         {{email_change_form.password1}}
+
+         
+         `)
+         $("#submit").html("")
+         $("#submit").append(`
+         <input type="submit" class = "btn btn-primary" value="Change" />
+        
+         
+         `
+
+         )
+  
+         $('#id_submit_button').attr("id", "remove_favourite");
+         $('#id_submit_button').attr("type", "submit");
+
+   })
+      
+
+
+</script>
+
+
+
+
+
+  
+
+{% endblock javascript %}
+
+

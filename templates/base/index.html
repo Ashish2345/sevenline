@@ -1,0 +1,291 @@
+{% load static %}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="VOIP" name="description" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+
+    <title> Dashboard</title>
+    
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% if site_settings_backend.favicon %}{{site_settings_backend.favicon.url}}{% else %}{% static 'assets/images/favicon.png' %}{% endif %}">
+    
+    {% include "base/css.html" %}
+    
+    <style>
+
+        {% comment %} html {
+            zoom: 0.8;
+          }
+
+          .modal-container-selector {
+            transform: scale(0.8);
+           
+          } {% endcomment %}
+        .select2-dropdown {
+            z-index:99999;
+        }
+        .css-credit
+        {
+            box-sizing: border-box;
+            display: inline-block;
+            margin-left: 0.75rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 6px;
+            margin-top: 14px;
+            font-size: 0.75rem;
+            line-height: 1.5rem;
+            height: 38px;
+            border-radius: 12px;
+            width: 130px;
+            background-color:  rgba(85,110,230,.25)!important;
+        }
+        .css-445683 {
+            margin: 0px;
+            padding: 0px 0.5rem 0px 0px;
+            color: rgb(18, 28, 45);
+            font-size: 0.75rem;
+            line-height: 1.25rem;
+        }
+        .css-kjj8uygs {
+            box-sizing: border-box;
+            color: rgb(2, 99, 224);
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            outline: none;
+            text-decoration: underline;
+        }
+
+        #info_style
+        {
+            box-sizing: border-box;
+            display: inline-block;
+            /* margin-left: 0.75rem; */
+            /* padding-left: 0.75rem; */
+            padding-right: 0.75rem;
+            padding-top: 8px;
+            margin-top: 14px;
+            font-size: 0.75rem;
+            line-height: 1.5rem;
+            height: 38px;
+            padding-left: 5px;
+            font-size: 19px;
+            /* color: #e7e2e2; */
+            /* background-color: red; */
+            cursor: pointer;
+        }
+
+        div.dataTables_wrapper div.dataTables_length label 
+        {
+            margin-left: 13px;
+        }
+        .dataTables_filter
+        {
+            margin-right: 10px
+        }
+        div.dataTables_wrapper div.dataTables_info {
+            margin-left: 13px;
+        }
+        div.dataTables_wrapper div.dataTables_paginate {
+            margin-bottom: 12px;
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 420px) and (min-width: 385px){
+        .logo-nav {
+            border: 2px solid black;
+            height: 72px;
+            width: 103px;
+        }
+
+        @media (max-width: 767px) {
+            #resize_scrn
+            {
+                margin-left: 14px;
+            }
+
+        }
+
+
+        .logo-nav .logo .logo-sm img{
+            margin-left: -20px;
+        }
+
+
+    }
+
+    @media screen and (max-width: 1200px) {
+        .user-dropdown{
+            display:inline;
+        }
+        
+    }
+       
+    </style>
+    {% block extra_css %}
+
+
+    {% endblock %}
+   
+
+</head>
+
+
+<body data-sidebar="dark">
+
+
+
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        {% block header %}
+        {% include 'base/header.html' %}
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'base/sidebar.html' %}
+        {% endblock %}
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid" id="resize_scrn">
+                    <!-- start page title -->
+                    <div class="row">   
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between" id="top_breadcum">
+                                <h4 class="mb-sm-0 font-size-18">{{breadscumb.current_path.name}}</h4>
+                                <div class="page-title-right" bis_skin_checked="1">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="{{breadscumb.siteurl}}">Dashboard</a></li>
+                                        <li class="breadcrumb-item active"><a href="{{breadscumb.current_path.url}}">{{breadscumb.current_path.name}}</a></li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="popSound" >
+                        <source src="{% static 'assets/popsound.mp3' %}" type="audio/mpeg">
+                      </audio> 
+                   
+                    <!-- end page title -->
+                    {% block contents %}
+                       
+
+                    {% endblock %}
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+           
+        </div>
+
+    </div>
+    <!-- END layout-wrapper -->
+           
+
+
+
+            {% include "base/js.html" %}
+
+            
+            <script>
+
+              
+               
+function confirmDelete(id){
+    
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result)=>{
+       
+      if(result.value){
+       
+       $.ajax({
+                url:  $(`#deletebtn${id}`).attr("data-url"),
+                type: "POST",
+                data: {
+                    code: $(`#deletebtn${id}`).attr("data-code"),
+                    csrfmiddlewaretoken: jQuery('meta[name="csrf-token"]').attr("content"),
+                },
+                dataType: "html",
+                success: function () {
+                       Swal.fire(
+                        'Deleted!',
+                        'Successfully  deleted.',
+                        'success'
+                      )
+                      $(`#tr_id${id}`).fadeOut()
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                 
+                     Swal.fire(
+                        'Not Deleted!',
+                        'Error Occurred While Deleting !',
+                        'error'
+                      )
+                }
+            });
+      }
+    })
+    
+    } 
+
+    {% for message in messages %}
+    {% if message.level == 20 %}
+        var swal_type = 'info';	
+    {% elif message.level == 25 %}
+        var swal_type = 'success';			
+    {% elif message.level == 30 %}
+        var swal_type = 'warning';		
+    {% elif message.level == 40 %}
+        var swal_type = 'error';	
+    {% endif %}
+    
+    Swal.fire({
+        position: 'top-end',
+        type: swal_type,
+        title: '{{ message }}',
+        showConfirmButton: false,
+        timer: 2000,
+        height: '100px'
+    })
+    {% endfor %}
+
+
+
+ 
+
+  
+
+
+            </script>
+
+        
+
+
+
+            {% block javascript %}
+            <!-- JAVASCRIPT -->
+
+            {% endblock javascript %}
+
+           
+        </body>
+
+    </html>

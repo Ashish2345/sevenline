@@ -1,0 +1,90 @@
+.pricing__section {
+    .banner__title {
+        position: relative;
+        background: var(--dark-bg-color);
+        padding: 4rem 0;
+
+        .content__title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 64px;
+            font-weight: 600;
+            color: white;
+
+            @media (max-width: 1280px) {
+                font-size: 54px;
+            }
+
+            @media (max-width: 992px) {
+                font-size: 44px;
+            }
+
+            @media (max-width: 600px) {
+                font-size: 34px;
+            }
+
+            span {
+                font-size: 32px;
+                color: var(--secondary-color);
+
+                @media (max-width: 600px) {
+                    font-size: 22px;
+                    line-height: 1.5;
+                }
+            }
+        }
+
+        .title__desc {
+            color: white;
+            margin-top: 1rem;
+            font-size: 18px;
+            font-weight: 300;
+        }
+    }
+
+    .pricing__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        padding: 5rem 0;
+
+        @media (max-width: 1280px) {
+            grid-gap: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .pricing__card {
+            background: #f6f6f6;
+            padding: 2rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            grid-gap: 1rem;
+            transition: all 300ms ease-in-out;
+
+            @media (max-width: 1280px) {
+                padding: 2rem 1rem;
+            }
+
+            &:hover {
+                box-shadow: 5px 5px 40px #7437a02a;
+                transform: translateY(-10px);
+                background: white;
+            }
+
+            .pricing__title {
+                font-weight: bold;
+                font-size: 24px;
+                color: var(--secondary-color);
+            }
+        }
+    }
+}

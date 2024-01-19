@@ -1,0 +1,35 @@
+{% extends "base/index.html" %}
+
+{% block title %}System {% endblock %}
+
+{% block subtitle %}Profile{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+<style>
+
+</style>
+
+{% endblock %}
+
+{% block contents %}
+
+
+
+<form method = "post" action = "{% url 'account:change-number' user.id %}">
+
+{% csrf_token %}
+
+<label for= "contact_number" name = "contact_no">New Contact Number: </label>
+{{form.contact_no}}
+
+
+<input type="submit" class = "btn btn-primary mt-3" value = "Save Changes">
+
+</form>
+
+
+
+{% endblock %}
