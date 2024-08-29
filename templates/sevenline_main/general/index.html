@@ -1,0 +1,326 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+   <HEAD>
+      <TITLE>Thailand nationwide lottery .</TITLE>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <META content="The Thailand nationwide lottery and results check."  name="description">
+      <META content="thai,Thailand,Thai,lotto,Lottery,lottery play,tip,tips,lottery bet " name="keywords">
+      
+
+      <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+      <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
+      <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
+      {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
+      <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
+     
+      <style>
+         body {
+         background: #8E0000;
+         color: #ffffff;
+         font-family: 'Open Sans', sans-serif;
+         margin: 0;
+         font-size: 18px; line-height: 1.4;padding:0px;}
+         p {margin: 0 0 1.4em;}
+         * {
+         box-sizing: border-box;
+         }
+         input, select, textarea {
+         color: red;
+         }
+         /* Create two equal columns that floats next to each other */
+         .column {
+         float: left;
+         width: 50%;
+         padding: 10px;
+         //height: 400px; 
+         /* Should be removed. Only for demonstration */
+         height: auto; 
+         }
+         /* Clear floats after the columns */
+         .row:after {
+         content: "";
+         display: table;
+         clear: both;
+         }
+         /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+         @media screen and (max-width: 600px) {
+         .column {
+         width: 100%;
+         }
+         }
+         A:link {
+         COLOR: orange; TEXT-DECORATION: none
+         }
+         A:visited {
+         COLOR: orange; TEXT-DECORATION: none
+         }
+         A:hover {
+         COLOR: red; TEXT-DECORATION:none
+         }
+         h1   {
+         color:  silver;
+         font-size: 550%;
+         font-weight: 700;
+         text-align: center;
+         padding-top: 5%
+         }
+         h2   {
+         color:  silver;
+         font-size: 350%;
+         font-weight: 500;
+         text-align: center;
+         padding-top: 2%
+         }
+         h3  {
+         color:  silver;
+         font-size: 150%;
+         font-weight: 300;
+         text-align: justify;
+         padding-top: 1%
+         }
+         p {
+         font-family: 'Open Sans', sans-serif;
+         color: #F5F5F5;
+         font-size: 160%;
+         line-height: 150%;
+         padding: 5%;
+         text-indent: 2%;
+         text-align: justify;
+         }
+         hr   {color: green;}
+         img {
+         max-width: 100%;
+         height: auto;
+         margin-top: 5px;
+         display: block;
+         margin: 0 auto;
+         }
+         #rcorners1 {
+         border-radius: 25px;
+         background: #73AD21;
+         padding: 20px; 
+         width: 300px;
+         height: 100px;    
+         }
+         #rcorners2 {
+         border-radius: 25px;
+         border: 2px solid #73AD21;
+         padding: 20px; 
+         width: 300px;
+         height: 250px;    
+         }
+         #rcorners_menu {
+         border-radius: 10px;
+         border: 20px solid green;
+         padding: 10px; 
+         width: 280px;
+         height: 80px;   
+         background: green; 
+         }
+         #rcorners3 {
+         border-radius: 25px;
+         background: url(paper.html);
+         background-position: left top;
+         background-repeat: repeat;
+         padding: 20px; 
+         width: 200px;
+         height: 150px;    
+         }
+         .nav ul li a{
+         color: red !important;
+         font-family: 'Open Sans', sans-serif !important;
+         font-size: 1.5em ;
+         padding: 1px 1px 1px ;
+         }
+         td {
+         background-color: #CDD7FB;
+         color: black;
+         font-size:13px;
+         }
+         th {
+         background-color: #4CAF50;
+         color: white;
+         font-size:13px;
+         }
+         #main
+         {
+         margin: 42px auto;
+         position:relative;
+         background:rgba(16,16,17,0.70);
+         max-width: 95%;
+         box-shadow: 3px 3px 2.5px #888888;
+         border-radius:5px;
+         }   
+         h1 {
+         text-align: center;
+         color: #fff;
+         font-size: 2em;
+         }
+         .red {
+         color: red;
+         }
+         .map
+         {
+         display:inline;
+         margin: 5px 5px 5px;
+         border-radius:5px;
+         border-style:solid;
+         border-width:2px;
+         border-color:#fff;
+         }
+         .address {
+         display:inline;
+         vertical-align: top;
+         }
+         /* Style the header */
+         .header {
+         padding: 10px 10px;
+         /* background: #555;*/
+         color: #f1f1f1;
+         z-index:1;
+         }
+         /* Page content */
+         .content {
+         padding: 16px;
+         }
+         /* The sticky class is added to the header with JS when it reaches its scroll position */
+         .sticky {
+         position: fixed;
+         top: 100;
+         width: 100%
+         }
+         /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+         .sticky + .content {
+         padding-top: 100px;
+         }
+         .navbar-inverse {
+         background-color:#8E0000;
+         }
+         .circular--landscape {
+         display: inline-block;
+         position: relative;
+         width: 60px;
+         height:50px;
+         overflow: hidden;
+         border-radius: 50%;
+         }
+         .circular--landscape img {
+         width: auto;
+         height: 100%;
+         margin-left: -20x;
+         margin-right: -20x;
+         }
+         #content-desktop {display: block;}
+         #content-mobile {display: none;}
+         @media screen and (max-width: 768px) {
+         #content-desktop {display: none;}
+         #content-mobile {display: block;}
+         }
+         footer{
+         background-color: #350B0C;
+         padding:30px 0px;
+         }	       
+         .logo{
+         color:#FFF;
+         font-weight:700;
+         font-size:30px;
+         }
+         .address span , .menu span{
+         color: #FFF; 
+         font-weight: bold; 
+         border-bottom: 1px solid #c7c7c7; 
+         padding:10px 0px;
+         display: block;
+         text-transform: uppercase;
+         font-size: 16px;
+         letter-spacing: 3px;
+         }
+         .address li a , .menu li a{
+         color:#FFF;
+         letter-spacing: 3px;
+         text-decoration:none;
+         font-size:14px;
+         }
+         .address li, .menu li{
+         margin:20px 0px;
+         list-style: none;
+         }
+         .address li a:hover , .menu li a:hover{
+         color: #da3e44;
+         -webkit-transition: all 1s ease-in-out;
+         -moz-transition: all 1s ease-in-out;
+         -o-transition: all 1s ease-in-out;
+         transition: all 1s ease-in-out;
+         }
+         .address .fa{
+         color: #da3e44;
+         margin-right: 10px;
+         font-size:18px;
+         }
+      </style>
+   </head>
+   <body>
+      <br><br>
+      <div class="container-fluid">
+         <img src="{% static "image/logo.png" %}" class="img-rounded" align="middle" width="304">
+         <h2>Thailand lottery tips </h2>
+         <div class="content">
+            <footer>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-8 col-sm-8 col-xs-12">
+                        <h2>
+                        Welcome to us</h3>
+                        <h1>SMART DIGITS</h1>
+                        <a href="https://www.youtube.com/channel/UCr2jVjs1Ukj07rXqyl8QvGQ">
+                        <img src="{% static "general/image/subscrib_botton1.png" %}" class="img-rounded" align="center" width="270"></a>     
+                     </div>
+                     <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="menu">
+                           <span>Check out more.</span>  
+                           <li>
+                              <a href="/">Home</a>
+                           </li>
+                           <li><a href="https://phuketnight.net/"
+                              data-icon="grid" data-theme="b">Thai Lottery Play</a></li>
+                           <li>
+                              <a href="https://sixline.com/general/result.php">Thai Lottery result</a>
+                           </li>
+                           <li>
+                              <a href="https://sixline.com/general/stat.php">Result statistic</a>
+                           </li>
+                           <li><a href="https://sixline.com/general/abs_stat1.php"
+                              data-icon="grid" data-theme="b">All from best scores</a></li>
+                           <li><a href="https://sixline.com/general/abs_stat3.php"
+                              data-icon="grid" data-theme="b">3UP best score</a></li>
+                           <li><a href="https://sixline.com/general/abs_stat2up.php"
+                              data-icon="grid" data-theme="b">2UP best score</a></li>
+                           <li><a href="https://sixline.com/general/abs_stat2.php"
+                              data-icon="grid" data-theme="b">2DOWN best score</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+         </div>
+      </div>
+      <script>
+         window.onscroll = function() {myFunction()};
+         
+         var header = document.getElementById("myHeader");
+         var sticky = header.offsetTop;
+         
+         function myFunction() {
+           if (window.pageYOffset > sticky) {
+             header.classList.add("sticky");
+           } else {
+             header.classList.remove("sticky");
+           }
+         }
+      </script> 
+   </body>
