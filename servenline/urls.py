@@ -4,8 +4,9 @@ from .views import (HomePageView, ContactPageView, ServicePageView, GeneralPageV
                     PreviewTipsPageView, GraphTipsPageView, SignupPageView, LoginPageView,
                     PwResetPageView,
                     IndexMPageView, HowtoplayPageView, MywalletplayPageView, ResultPageView,
-                    ContactMPageView, Login2PageView, RegisterPageView, PassRstPageView
-
+                    ContactMPageView, Login2PageView, RegisterPageView, PassRstPageView,
+                    AbsStat1PageView, AbsStat2PageView, AbsStat2UpPageView, AbsStat3PageView,
+                    Result1PageView, StatPageView
                     )
 
 app_name= "servenline"
@@ -32,6 +33,14 @@ urlpatterns = [
     path('login2_m.php', Login2PageView.as_view(), name="login2_m"),
     path('regist_m.php', RegisterPageView.as_view(), name="regist_m"),
     path('reset_pw_m.php', PassRstPageView.as_view(), name="reset_pw_m"),
+
+    #general
+    path('result.php', Result1PageView.as_view(), name="result1"),
+    path('stat.php', StatPageView.as_view(), name="stat"),
+    path('abs_stat1.php', AbsStat1PageView.as_view(), name="abs_stat1"),
+    path('abs_stat2.php', AbsStat2PageView.as_view(), name="abs_stat2"),
+    path('abs_stat2up.php', AbsStat2UpPageView.as_view(), name="abs_stat2up"),
+    path('abs_stat3.php', AbsStat3PageView.as_view(), name="abs_stat3"),
 
 
 

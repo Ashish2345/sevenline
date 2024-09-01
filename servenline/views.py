@@ -66,3 +66,35 @@ class RegisterPageView(TemplateView):
 
 class PassRstPageView(TemplateView):
     template_name = "puketsite/pass_rst.html"
+
+
+
+###############################################################
+#General index
+###############################################################
+
+
+
+
+class Result1PageView(TemplateView):
+    template_name = "general_pg/result.html"
+
+
+
+
+class StatPageView(TemplateView):
+    template_name = "general_pg/stat.html"
+
+class AbsStat1PageView(TemplateView):
+    template_name = "general_pg/abs_stat1.html"
+
+
+class AbsStat2PageView(TemplateView):
+    template_name = "general_pg/abs_stat2.html"
+
+class AbsStat2UpPageView(TemplateView):
+    template_name = "general_pg/abs_stat2up.html"
+
+
+class AbsStat3PageView(TemplateView):
+    template_name = "general_pg/abs_stat3.html"

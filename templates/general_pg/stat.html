@@ -1,23 +1,19 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
-   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <HEAD>
       <TITLE>Thailand nationwide lottery .</TITLE>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <META content="The Thailand nationwide lottery and results check."  name="description">
       <META content="thai,Thailand,Thai,lotto,Lottery,lottery play,tip,tips,lottery bet " name="keywords">
-      
-
-      <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
-      <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
-      <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
-      {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
-      <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
-     
+        
+        <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+        <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
+        <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
+        {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
+        <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
+   
       <style>
          body {
          background: #8E0000;
@@ -264,63 +260,91 @@
          }
       </style>
    </head>
-   <body>
-      <br><br>
+   <body style="background-color:#165C03">
+    {% include "general_pg/base/header.html" %}
+
       <div class="container-fluid">
-         <img src="{% static "image/logo.png" %}" class="img-rounded" align="middle" width="304">
-         <h2>Thailand lottery tips </h2>
-         <div class="content">
-            <footer>
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-8 col-sm-8 col-xs-12">
-                        <h2>
-                        Welcome to us</h3>
-                        <h1>SMART DIGITS</h1>
-                        <a href="https://www.youtube.com/channel/UCr2jVjs1Ukj07rXqyl8QvGQ">
-                        <img src="{% static "general/image/subscrib_botton1.png" %}" class="img-rounded" align="center" width="270"></a>     
-                     </div>
-                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <ul class="menu">
-                           <span>Check out more.</span>  
-                           <li>
-                              <a href="/">Home</a>
-                           </li>
-                           <li><a href="{% url "servenline:index_m" %}"
-                              data-icon="grid" data-theme="b">Thai Lottery Play</a></li>
-                           <li>
-                              <a href="{% url "servenline:result1" %}">Thai Lottery result</a>
-                           </li>
-                           <li>
-                              <a href="{% url "servenline:stat" %}">Result statistic</a>
-                           </li>
-                           <li><a href="{% url "servenline:abs_stat1" %}"
-                              data-icon="grid" data-theme="b">All from best scores</a></li>
-                           <li><a href="{% url "servenline:abs_stat3" %}"
-                              data-icon="grid" data-theme="b">3UP best score</a></li>
-                           <li><a href="{% url "servenline:abs_stat2up" %}"
-                              data-icon="grid" data-theme="b">2UP best score</a></li>
-                           <li><a href="{% url "servenline:abs_stat2" %}"
-                              data-icon="grid" data-theme="b">2DOWN best score</a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </footer>
-         </div>
+      <div class="row" style="background-color:#165C03">
+      <center>
+      <h2>Statistic</h2>
+      <div>
+         <img class="img-rounded" align="middle" src="{% static "image_content/zzzxxxyyy.png" %}" alt="www.sixline.com" width="340" >
+         <br>
+         Link more: <a href="https://www.sixline.com/vip_line.php">VIP.statistic</a>
       </div>
-      <script>
-         window.onscroll = function() {myFunction()};
-         
-         var header = document.getElementById("myHeader");
-         var sticky = header.offsetTop;
-         
-         function myFunction() {
-           if (window.pageYOffset > sticky) {
-             header.classList.add("sticky");
-           } else {
-             header.classList.remove("sticky");
-           }
-         }
-      </script> 
+      <table width="800%" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+            <html>
+               <head>
+                  <script>
+                     function showUser(str)
+                     {
+                     if (str=="")
+                       {
+                       document.getElementById("txtHint").innerHTML="";
+                       return;
+                       } 
+                     if (window.XMLHttpRequest)
+                       {// code for IE7+, Firefox, Chrome, Opera, Safari
+                       xmlhttp=new XMLHttpRequest();
+                       }
+                     else
+                       {// code for IE6, IE5
+                       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                       }
+                     xmlhttp.onreadystatechange=function()
+                       {
+                       if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                         {
+                         document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+                         }
+                       }
+                     xmlhttp.open("GET.html","getuserb2e6.html?no="+str,true);
+                     xmlhttp.send();
+                     }
+                  </script>
+               </head>
+               <body>
+                  <font color="#000000">
+                     <form>
+                        <select name="users" onchange="showUser(this.value)">
+                           <option value="">Select a digit:</option>
+                           <option value="0">0</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="8">8</option>
+                           <option value="9">9</option>
+                        </select>
+                     </form>
+                  </font>
+                  <br>
+                  <div id="txtHint"><b>Statistic detail will show here.</b></div>
+               </body>
+               <!-- Mirrored from www.sixline.com/general/stat.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 15:30:00 GMT -->
+            </html>
+         </tr>
+      </table>
    </body>
+</html>
+{% include "general_pg/base/footer.html" %}
+
+<script>
+   window.onscroll = function() {myFunction()};
+   
+   var header = document.getElementById("myHeader");
+   var sticky = header.offsetTop;
+   
+   function myFunction() {
+     if (window.pageYOffset > sticky) {
+       header.classList.add("sticky");
+     } else {
+       header.classList.remove("sticky");
+     }
+   }
+</script> 
+</body>

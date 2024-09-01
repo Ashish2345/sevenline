@@ -1,23 +1,24 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <HEAD>
       <TITLE>Thailand nationwide lottery .</TITLE>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <META content="The Thailand nationwide lottery and results check."  name="description">
       <META content="thai,Thailand,Thai,lotto,Lottery,lottery play,tip,tips,lottery bet " name="keywords">
-      
-
-      <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
-      <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
-      <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
-      {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
-      <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
      
+        
+        <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+        <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
+        <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
+        {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
+        <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
+        
+        
+
       <style>
          body {
          background: #8E0000;
@@ -264,51 +265,98 @@
          }
       </style>
    </head>
-   <body>
-      <br><br>
+   <body style="background-color:#165C03">
+
+        {% include "general_pg/base/header.html" %}
+
+
       <div class="container-fluid">
-         <img src="{% static "image/logo.png" %}" class="img-rounded" align="middle" width="304">
-         <h2>Thailand lottery tips </h2>
-         <div class="content">
-            <footer>
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-8 col-sm-8 col-xs-12">
-                        <h2>
-                        Welcome to us</h3>
-                        <h1>SMART DIGITS</h1>
-                        <a href="https://www.youtube.com/channel/UCr2jVjs1Ukj07rXqyl8QvGQ">
-                        <img src="{% static "general/image/subscrib_botton1.png" %}" class="img-rounded" align="center" width="270"></a>     
-                     </div>
-                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <ul class="menu">
-                           <span>Check out more.</span>  
-                           <li>
-                              <a href="/">Home</a>
-                           </li>
-                           <li><a href="{% url "servenline:index_m" %}"
-                              data-icon="grid" data-theme="b">Thai Lottery Play</a></li>
-                           <li>
-                              <a href="{% url "servenline:result1" %}">Thai Lottery result</a>
-                           </li>
-                           <li>
-                              <a href="{% url "servenline:stat" %}">Result statistic</a>
-                           </li>
-                           <li><a href="{% url "servenline:abs_stat1" %}"
-                              data-icon="grid" data-theme="b">All from best scores</a></li>
-                           <li><a href="{% url "servenline:abs_stat3" %}"
-                              data-icon="grid" data-theme="b">3UP best score</a></li>
-                           <li><a href="{% url "servenline:abs_stat2up" %}"
-                              data-icon="grid" data-theme="b">2UP best score</a></li>
-                           <li><a href="{% url "servenline:abs_stat2" %}"
-                              data-icon="grid" data-theme="b">2DOWN best score</a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </footer>
-         </div>
-      </div>
+      <div class="row" style="background-color:#165C03">
+      <center>
+      <h2>Best score for 2Down</h2>
+      <center>
+      <table border='1' bgcolor='silver'>
+         <tr>
+            <th>For Draw</th>
+            <th>Digit >></th>
+            <th><IMG src="{% static "img_new/0.gif" %}"></th>
+            <th><IMG src="{% static "img_new/1.gif" %}"></th>
+            <th><IMG src="{% static "img_new/2.gif" %}"></th>
+            <th><IMG src="{% static "img_new/3.gif" %}"></th>
+            <th><IMG src="{% static "img_new/4.gif" %}"></th>
+            <th><IMG src="{% static "img_new/5.gif" %}"></th>
+            <th><IMG src="{% static "img_new/6.gif" %}"></th>
+            <th><IMG src="{% static "img_new/7.gif" %}"></th>
+            <th><IMG src="{% static "img_new/8.gif" %}"></th>
+            <th><IMG src="{% static "img_new/9.gif" %}"></th>
+         </tr>
+         <tr>
+            <td align='center'>2024-09-16</td>
+            <td align='center'> level >> </td>
+            <td align='center'>2</td>
+            <td align='center'>22</td>
+            <td align='center'>1</td>
+            <td align='center'>2</td>
+            <td align='center'>18</td>
+            <td align='center'>33</td>
+            <td align='center'>18</td>
+            <td align='center'>12</td>
+            <td align='center'>13</td>
+            <td align='center'>5</td>
+         </tr>
+      </table>
+      Remark: Higher level score is the best for bet.
+      <!DOCTYPE HTML>
+      <html>
+         <head>
+            <script>
+               window.onload = function() {
+                var chart = new CanvasJS.Chart("chartContainer0", {
+               	animationEnabled: true,
+               	title:{
+               	text: "Best score for 2Down-Type5-for coming draw"
+               	},
+               	axisY: {
+               		title: "Best for(2024-09-16)",
+               		prefix: "",
+               		suffix:  "P"
+               	},
+               	data: [{
+               		type: "bar",
+               		yValueFormatString: "#,##0",
+               		indexLabel: "{y}",
+               		indexLabelPlacement: "inside",
+               		indexLabelFontWeight: "bolder",
+               		indexLabelFontColor: "white",
+               		dataPoints: [{"y":2,"label":0},{"y":22,"label":1},{"y":1,"label":2},{"y":2,"label":3},{"y":18,"label":4},{"y":33,"label":5},{"y":18,"label":6},{"y":12,"label":7},{"y":13,"label":8},{"y":5,"label":9}]	}]
+               });
+               chart.render();
+               }
+            </script>
+         </head>
+         <body>
+            <center>
+            <h2>Statistic from our records</h2>
+            <div id="chartContainer0" style="height: 370px; width: 100%;"></div>
+            <script src="{% static "canvasjs/canvasjs.min.js" %}"></script>
+
+            <form method="POST">
+               Type : 
+               <select name="type">
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option selected value="5">5</option>
+                  <option value="6">6</option>
+               </select>
+               monthly data evaluates.
+               <br><input type="submit" value="submit">
+            </form>
+         </body>
+         <!-- Mirrored from www.sixline.com/general/abs_stat2.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 14:02:45 GMT -->
+      </html>
+      {% include "general_pg/base/footer.html" %}
+
       <script>
          window.onscroll = function() {myFunction()};
          

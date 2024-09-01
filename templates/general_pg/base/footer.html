@@ -1,0 +1,34 @@
+{% load static %}
+
+<footer>
+    <div class="container">
+       <div class="row">
+          <div class="col-md-8 col-sm-8 col-xs-12">
+             <h2>
+             Welcome to us</h3>
+             <h1>SMART DIGITS</h1>
+             <a href="https://www.youtube.com/channel/UCr2jVjs1Ukj07rXqyl8QvGQ">
+             <img src="{% static "general/image/subscrib_botton1.png" %}" class="img-rounded" align="center" width="270"></a>     
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+             <ul class="menu">
+                <span>Check out more.</span>   
+                <li>
+                   <a href="{% url "servenline:result1" %}">Thai Lottery result</a>
+                </li>
+                <li>
+                   <a href="{% url "servenline:stat" %}">Result statistic</a>
+                </li>
+                <li><a href="{% url "servenline:abs_stat1" %}"
+                   data-icon="grid" data-theme="b">All from best scores</a></li>
+                <li><a href="{% url "servenline:abs_stat3" %}"
+                   data-icon="grid" data-theme="b">3UP best score</a></li>
+                <li><a href="{% url "servenline:abs_stat2up" %}"
+                   data-icon="grid" data-theme="b">2UP best score</a></li>
+                <li><a href="{% url "servenline:abs_stat2" %}"
+                   data-icon="grid" data-theme="b">2DOWN best score</a></li>
+             </ul>
+          </div>
+       </div>
+    </div>
+ </footer>
