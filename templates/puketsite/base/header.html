@@ -1,0 +1,48 @@
+
+{% load static %}
+<div class="header" id="myHeader">
+    <div class="navbar navbar-fixed-top">
+       <div class="container-fluid">
+          <div class="navbar-inner">
+             <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                   <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                      </button>
+                      <a class="navbar-brand" href="{% url "servenline:index_m" %}" id="logo">
+                         <div class="circular--landscape">
+                            <img alt="avatar" class="profile-pic" src="{% static "phuket/image/logo_lotto1.png" %}" alt="">
+                         </div>
+                      </a>
+                   </div>
+                   <div class="collapse navbar-collapse" id="myNavbar">
+                      <ul class="nav navbar-nav">
+                         <li><a href="{% url "servenline:index_m" %}"
+                            data-icon="home" data-theme="b">Home</a></li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">How to<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                               <li><a href="{% url "servenline:howtoplay" %}">Play lottery </a></li>
+                               <li><a href="{% url "servenline:mywalletaddress" %}">My wallet address</a></li>
+                            </ul>
+                         </li>
+                         <li><a href="{% url "servenline:result_m" %}"
+                            data-icon="grid" data-theme="b">Result</a></li>
+                         <li><a href="{% url "servenline:contact_m" %}"
+                            data-icon="grid" data-theme="b">Help</a></li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right">
+                         <li><a href="{% url "servenline:login2_m" %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                         <li><a href="{% url "servenline:regist_m" %}"><span class="glyphicon glyphicon-user"></span>Open Account</a></li>
+                      </ul>
+                   </div>
+                </div>
+             </nav>
+          </div>
+       </div>
+    </div>
+    <br>
+ </div>

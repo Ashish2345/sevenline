@@ -33,3 +33,36 @@ class LoginPageView(TemplateView):
 
 class PwResetPageView(TemplateView):
     template_name = "sevenline_main/pw_reset.html"
+
+
+###############################################################
+#puketindex
+###############################################################
+
+
+class IndexMPageView(TemplateView):
+    template_name = "puketsite/indexm.html"
+
+
+class HowtoplayPageView(TemplateView):
+    template_name = "puketsite/howtoplay.html"
+
+class MywalletplayPageView(TemplateView):
+    template_name = "puketsite/mywallet.html"
+
+
+class ResultPageView(TemplateView):
+    template_name = "puketsite/result.html"
+
+class ContactMPageView(TemplateView):
+    template_name = "puketsite/help.html"
+
+class Login2PageView(TemplateView):
+    template_name = "puketsite/login.html"
+
+class RegisterPageView(TemplateView):
+    template_name = "puketsite/signup.html"
+
+
+class PassRstPageView(TemplateView):
+    template_name = "puketsite/pass_rst.html"

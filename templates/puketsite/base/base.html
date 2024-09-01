@@ -1,0 +1,298 @@
+<html lang="en">
+
+{% load static %}   
+<HEAD>
+      <TITLE>Thailand nationwide lottery .</TITLE>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <META content="The blockchain wallet makes the next world."  name="description">
+      <META content="thai,Thailand,Thai,lotto,Lottery,lottery,tip,tips,Cryptocurrency,bitcoin,crypto,wallet,blockchain " name="keywords">
+
+        <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+        <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
+        <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
+        {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
+        <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
+        
+    </head>
+    <style>
+        body {
+        background:#165c03;
+        color: #ffffff;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        font-size: 20px; line-height: 1.2;padding: 0.4 em;}
+        p {
+        margin: 0 0 1.4em;  
+        }
+        @media all and (min-width: 800px) {
+        .container {
+        }
+        .columns  {
+        height:20vh;
+        column-count: 2;        
+        column-gap: 2em;
+        }
+        }
+        h1   {
+        color:  #A2D28C;
+        font-size: 200%;
+        font-weight: 500;
+        text-align: left;
+        padding-top: 3%
+        }
+        h2   {
+        color:  #A2D28C;
+        font-size: 150%;
+        font-weight: 200;
+        text-align: left;
+        padding-top: 3%
+        }
+        A:link {
+        COLOR: orange; TEXT-DECORATION: none
+        }
+        A:visited {
+        COLOR: orange; TEXT-DECORATION: none
+        }
+        A:hover {
+        COLOR: red; TEXT-DECORATION:none
+        }
+        p {
+        font-family: 'Open Sans', sans-serif;
+        color: #ffffff;
+        font-size: 120%;
+        line-height: 150%;
+        padding: 5%;
+        text-indent: 2%;
+        text-align: justify;
+        }
+        hr   {color: green;}
+        img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 5px;
+        display: block;
+        margin: 0 auto;
+        }
+        #rcorners1 {
+        border-radius: 25px;
+        background: #73AD21;
+        padding: 20px; 
+        width: 300px;
+        height: 100px;    
+        }
+        #rcorners2 {
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding: 20px; 
+        width: 300px;
+        height: 150px;    
+        }
+        #rcorners_menu {
+        border-radius: 10px;
+        border: 20px solid green;
+        padding: 10px; 
+        width: 280px;
+        height: 80px;   
+        background: green; 
+        }
+        #rcorners3 {
+        border-radius: 25px;
+        background: url(paper.html);
+        background-position: left top;
+        background-repeat: repeat;
+        padding: 20px; 
+        width: 200px;
+        height: 150px;    
+        }
+        .nav ul li a{
+        color: red !important;
+        font-family: 'Open Sans', sans-serif !important;
+        font-size: 1.5em ;
+        padding: 1px 1px 1px ;
+        }
+        .navbar .brand,
+        .navbar .nav > li > a {
+        padding: 10px 10px 10px 10px;
+        }
+        #main
+        {
+        margin: 42px auto;
+        position:relative;
+        background:rgba(16,16,17,0.70);
+        width:90%;
+        box-shadow: 3px 3px 2.5px #888888;
+        border-radius:5px;
+        }   
+        .red {
+        color: red;
+        }
+        .map
+        {
+        display:inline;
+        margin: 0 5px 0;
+        border-radius:5px;
+        border-style:solid;
+        border-width:2px;
+        border-color:#fff;
+        }
+        .address {
+        display:inline;
+        vertical-align: top;
+        }
+        /* Style the header */
+        .header {
+        padding: 10px 16px;
+        /* background: #555;*/
+        color: #f1f1f1;
+        z-index:10;
+        }
+        /* Page content */
+        .content {
+        position: relative;
+        z-index: 100;
+        padding: 16px;
+        }
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+        .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%
+        }
+        /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+        .sticky + .content {
+        padding-top: 0px;
+        }
+        .navbar-inverse {
+        background-color:#165c03;
+        }
+        .circular--landscape {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height:60px;
+        overflow: hidden;
+        border-radius: 50%;
+        }
+        .circular--landscape img {
+        width: auto;
+        height: 100%;
+        margin-left: -20x;
+        margin-right: -20x;
+        }
+        .wide { 
+        color: #f1f1f1;
+        text-align:left;
+        background:#165c03;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 0px 0px;
+        /*#A2D28C	background-image:url("/image/network2.jpg"); height: 400px; width: 400px;*/
+        }
+        #content-desktop {display: block;}
+        #content-mobile {display: none;}
+        @media screen and (max-width: 768px) {
+        #content-desktop {display: none;}
+        #content-mobile {display: block;}
+        }
+        #wrapper {
+        width: 100%;
+        height: auto;
+        }
+        #nottingham-park {
+        background: url(image/lottothai_baner.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        /* 
+        width of image / height of image * width
+        699px / 1200px * 100  = 57.7208918249
+        (change the 100 in this formula to whatever you want.)
+        padding-top: 57.7208918249%; */
+        padding-top: 10%;
+        }
+        footer{
+        background-color:#650B00;
+        padding:30px 0px;
+        }	       
+        .logo{
+        color:#FFF;
+        font-weight:700;
+        font-size:30px;
+        }
+        .address span , .menu span{
+        color: #FFF; 
+        font-weight: bold; 
+        border-bottom: 1px solid #c7c7c7; 
+        padding:10px 0px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: 3px;
+        }
+        .address li a , .menu li a{
+        color:#FFF;
+        letter-spacing: 3px;
+        text-decoration:none;
+        font-size:14px;
+        }
+        .address li, .menu li{
+        margin:20px 0px;
+        list-style: none;
+        }
+        .address li a:hover , .menu li a:hover{
+        color: #da3e44;
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+        }
+        .address .fa{
+        color: #da3e44;
+        margin-right: 10px;
+        font-size:18px;
+        }
+        .address .fa{
+        color: #da3e44;
+        margin-right: 10px;
+        font-size:18px;
+        }
+        .rotate {
+        animation: rotation 8s infinite linear;
+        }
+        @keyframes rotation {
+        from {
+        transform: rotate(0deg);
+        }
+        to {
+        transform: rotate(359deg);
+        }
+        }
+    </style>
+    </head>
+   <body>
+        {% include "puketsite/base/header.html" %}
+
+        {% block content %}
+        
+        {% endblock content %}
+      
+        {% include "puketsite/base/footer.html" %}
+
+      <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+         window.onscroll = function() {myFunction()};
+         
+         var header = document.getElementById("myHeader");
+         var sticky = header.offsetTop;
+         
+         function myFunction() {
+           if (window.pageYOffset > sticky) {
+             header.classList.add("sticky");
+           } else {
+             header.classList.remove("sticky");
+           }
+         }
+      </script> 
+   </body>
+   </html>

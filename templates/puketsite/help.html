@@ -1,0 +1,381 @@
+
+{% load static %}
+<html lang="en">
+
+   <HEAD>
+      <TITLE>Thailand nationwide lottery .</TITLE>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <META content="The Thailand nationwide lottery and results check."  name="description">
+      <META content="thai,Thailand,Thai,lotto,Lottery,lottery,tip,tips " name="keywords">
+      
+   
+        <link rel="stylesheet" href="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+        <script src="{% static "extras/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" %}"></script>
+        <script src="{% static "extras/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script> 
+        {% comment %} <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script> {% endcomment %}
+        <link href="{% static "extras/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %}" rel="stylesheet" />
+        
+      <style>
+         body {
+         background: #165c03;
+         color:silver;
+         font-family: 'Open Sans', sans-serif;
+         margin: 0;
+         font-size: 18px; line-height: 1.4;padding:0;}
+         p {margin: 0 0 1.4em;}
+         @media all and (min-width: 800px) {
+         .container {
+         }
+         .columns  {
+         height:50vh;
+         column-count: 2;        
+         column-gap: 2em;
+         }
+         }
+         input[type="text"], textarea {
+         background-color : #ffffff; 
+         }
+         button {
+         color: #900;
+         border: 1px solid #900;
+         font-weight: bold;
+         }
+         h1   {
+         color:  silver;
+         font-size: 300%;
+         font-weight: 900;
+         text-align: center;
+         padding-top: 3%
+         }
+         h2   {
+         color:  silver;
+         font-size: 250%;
+         font-weight: 700;
+         text-align: center;
+         padding-top: 2%
+         }
+         h3  {
+         color:  silver;
+         font-size: 150%;
+         font-weight: 300;
+         text-align: justify;
+         padding-top: 1%
+         }
+         td {
+         background-color: #CDD7FB;
+         color: black;
+         font-size:13px;
+         }
+         th {
+         background-color: #4CAF50;
+         color: white;
+         font-size:13px;
+         }
+         p {
+         font-family: 'Open Sans', sans-serif;
+         color: #F5F5F5;
+         font-size: 100%;
+         line-height: 140%;
+         padding: 5%;
+         text-indent: 2%;
+         text-align: justify;
+         }
+         hr   {color: green;}
+         img {
+         max-width: 100%;
+         height: auto;
+         margin-top: 5px;
+         display: block;
+         margin: 0 auto;
+         }
+         .left{float:left; width:50%;padding:1%;}
+         .nav ul li a{
+         color: gold !important;
+         font-family: 'Open Sans', sans-serif !important;
+         font-size: 1.8em ;
+         padding: 1px 1px 1px ;
+         }
+         .navbar .brand,
+         .navbar .nav > li > a {
+         padding: 10px 10px 10px 10px;
+         }
+         /* Style the header */
+         .header {
+         padding: 10px 16px;
+         /* background: #555;*/
+         color: #f1f1f1;
+         z-index:1;
+         }
+         /* Page content */
+         .content {
+         padding: 16px;
+         }
+         /* The sticky class is added to the header with JS when it reaches its scroll position */
+         .sticky {
+         position: fixed;
+         top: 0;
+         width: 95%
+         }
+         /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+         .sticky + .content {
+         padding-top: 102px;
+         }
+         .navbar-inverse {
+         background-color:#165c03;
+         }
+         .circular--landscape {
+         display: inline-block;
+         position: relative;
+         width: 80px;
+         height: 60px;
+         overflow: hidden;
+         border-radius: 50%;
+         }
+         .circular--landscape img {
+         width: auto;
+         height: 100%;
+         margin-left: -20x;
+         margin-right: -20x;
+         }
+         #content-desktop {display: block;}
+         #content-mobile {display: none;}
+         @media screen and (max-width: 768px) {
+         #content-desktop {display: none;}
+         #content-mobile {display: block;}
+         }
+         footer{
+         background-color: #650B00;
+         padding:30px 0px;
+         }	       
+         .logo{
+         color:#FFF;
+         font-weight:700;
+         font-size:30px;
+         }
+         .address span , .menu span{
+         color: #FFF; 
+         font-weight: bold; 
+         border-bottom: 1px solid #c7c7c7; 
+         padding:10px 0px;
+         display: block;
+         text-transform: uppercase;
+         font-size: 16px;
+         letter-spacing: 3px;
+         }
+         .address li a , .menu li a{
+         color:#FFF;
+         letter-spacing: 3px;
+         text-decoration:none;
+         font-size:14px;
+         }
+         .address li, .menu li{
+         margin:20px 0px;
+         list-style: none;
+         }
+         .address li a:hover , .menu li a:hover{
+         color: #da3e44;
+         -webkit-transition: all 1s ease-in-out;
+         -moz-transition: all 1s ease-in-out;
+         -o-transition: all 1s ease-in-out;
+         transition: all 1s ease-in-out;
+         }
+         .address .fa{
+         color: #da3e44;
+         margin-right: 10px;
+         font-size:18px;
+         }
+      </style>
+   </head>
+   <body>
+    {% include "puketsite/base/header.html" %}
+
+
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-sm-3">
+               <div id="content-desktop">
+                  <br>
+                  <img src="{% static "phuket/image/logo1.png" %}" class="img-rounded" align="middle" width="304">
+               </div>
+               <br>
+               <img src="https://www.sixline.com/image_content/result240901mMU54ADl6zHZtZjqFdv" class="img-rounded" align="middle" width="304">
+               <br>
+               <center>
+                  <table border='1' width='90%' align='center' bgcolor='silver'>
+                     <tr>
+                        <th>Drawn on</th>
+                        <th>1st. prize</th>
+                        <th>3Up</th>
+                        <th>2Up</th>
+                        <th>2Down</th>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-09-01</td>
+                        <td align='center'>199606</td>
+                        <td align='center'>606</td>
+                        <td align='center'>06</td>
+                        <td align='center'>94</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-08-16</td>
+                        <td align='center'>095867</td>
+                        <td align='center'>867</td>
+                        <td align='center'>67</td>
+                        <td align='center'>28</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-08-01</td>
+                        <td align='center'>407041</td>
+                        <td align='center'>041</td>
+                        <td align='center'>41</td>
+                        <td align='center'>46</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-07-16</td>
+                        <td align='center'>367336</td>
+                        <td align='center'>336</td>
+                        <td align='center'>36</td>
+                        <td align='center'>21</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-07-01</td>
+                        <td align='center'>434503</td>
+                        <td align='center'>503</td>
+                        <td align='center'>03</td>
+                        <td align='center'>89</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-06-16</td>
+                        <td align='center'>518504</td>
+                        <td align='center'>504</td>
+                        <td align='center'>04</td>
+                        <td align='center'>31</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-06-01</td>
+                        <td align='center'>530593</td>
+                        <td align='center'>593</td>
+                        <td align='center'>93</td>
+                        <td align='center'>42</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-05-16</td>
+                        <td align='center'>205690</td>
+                        <td align='center'>690</td>
+                        <td align='center'>90</td>
+                        <td align='center'>60</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-05-02</td>
+                        <td align='center'>980116</td>
+                        <td align='center'>116</td>
+                        <td align='center'>16</td>
+                        <td align='center'>17</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-04-16</td>
+                        <td align='center'>943598</td>
+                        <td align='center'>598</td>
+                        <td align='center'>98</td>
+                        <td align='center'>79</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-04-01</td>
+                        <td align='center'>803481</td>
+                        <td align='center'>481</td>
+                        <td align='center'>81</td>
+                        <td align='center'>90</td>
+                     </tr>
+                     <tr>
+                        <td align='center'>2024-03-16</td>
+                        <td align='center'>997626</td>
+                        <td align='center'>626</td>
+                        <td align='center'>26</td>
+                        <td align='center'>78</td>
+                     </tr>
+                  </table>
+               </center>
+               <center><font color='snow'>Link to : <a href='http://www.glo.or.th/main.php?filename=glo_lotto'>glo.or.th</a> for full detail.</font></center>
+            </div>
+            <div class="col-sm-9" style="background-color:#165c03;>
+               <div id="main">
+               <center>
+                  <h2> Questions & Answers </h2>
+               </center>
+               <p>
+                  At 1st. you must register to have a deposit account in our Thailand Lottery player agent. Then you can play.
+                  Please remember: We are not Banker but we are worldwide membership's represent who need to play ORIGINAL THAILAND LOTTERY.
+                  Please following Q&A below::
+                  <br><br>
+                  Q.) How much a one-year membership fee or for long life.<br>
+                  A.) Free of charge membership fee. 
+                  <br><br>
+                  Q.) If I want to play three digits on the last day for example 31 May 2005. then how I can I play, how I can contact you and let you know about my numbers and how many numbers I can play and how much the cost for if I play one number. 
+                  <br>A.) At 1st. you should sign-up to be a member and fund transfer to us. Then you can submit and confirm to play three digits on one day before the last day ( on 30 May 2005 and before) And we will confirm to you about you get the completed lottery on 31 May 2005 morning. You can track your play at www.lotterythai.org Now. 
+                  <br><br>
+                  Q.) If I won the number how can I get my claim money? 
+                  <br>A.)After you win, you will be charged 3% in your win prize for tax & fee. Then You will get Prize Money - 3%.
+                  Your money can claim by your order or keep with us to continuous play. 
+                  <br><br>
+                  Q.) Here the charges for western union is for one transaction nearly 200 THB. Can I deposit money and keep with you the same amount and play how much I want per time. Is it possible? 
+                  <br>A.)Deposit / Withdrawal are made possible via Cryptocurrency wallets. Start using money that’s free from bank charges, delays, and fraud via Cryptocurrencies like Bitcoin or Ethereum.
+                  <br><br>
+                  Q.) When can I claim MY credit to refund money back?
+                  <br>A.) It's up to you maybe one-year latter Or one-month latter.
+                  <br><br>
+                  Q.) Where is lottery Ticket?
+                  <br>A.) No, you don't need a lottery ticket. We are your player agent who claims your winning prize from Banker. and add up your deposit credit account. 
+                  <br><br>
+                  Q.) Can I play three digits both straight and rumble? If so how I can mention my rumbles number to you?
+                  <br>A.) Yes. you can play straight and rumble. 
+                  <br><br>
+                  Q.) Is it possible that I send money 10000 THB? or more including membership fee, the remaining amount could I keep with you for future playing? 
+                  <br>A.) It's free of registration but you will be charged around 3% of your winning prize for the service fee. 
+                  <br><br>
+                  Q.) Suppose I won how can I get my money? Did you send it on my spot or I need to go anywhere to collect it? Are there any charges for collecting money? for your information, I am not staying continuous at one place sometimes I am in India and sometimes I am in Saudi Arabia. 
+                  <br>A.) We don't have any problem. You can get your money everywhere in the earth via Cryptocurrency wallets. Start using money that’s free from bank charges, delays, and fraud via Cryptocurrencies like Bitcoin or Ethereum. And you will be charged around 10% of your Withdrawal amount. 
+                  <br><br>
+                  Q.) Please advise your paypal is working or not to play online thailand lottery. If not give me the bank details with IBAN. If I am able to transfer money I can play.
+                  <br>A.) You should try to use Wise app services.
+                  Send/receive money via Wise are allowed.
+                  Try to use Wise money app.
+               <hr>
+               QR scan for payment. <br> <img src='{% static "phuket/image/wise_share_qr.png" %}'>
+               <br><br>
+               Q.) What's mentioned account to send money. or the way to withdraw?
+               <br>A.) The mentioned will be sent via email responding. 
+               <br><br>
+               <br><br>
+               <H2 id="help">Help desk</h2>
+               <br>
+               <b>CONTACT EMAIL </b>: <a href="mailto:staff@7lineinc.com">staff@7lineinc.com</a>.For common questions or to reach our Support team.
+               <br>
+               <b>SERVICE CHARGE</b>:  The membership registration is free of charge, But 3% service charge of winning prize and 10% of Withdraw.
+               </font>
+               </p>
+            </div>
+         </div>
+      </div>
+      </div>
+                    {% include "puketsite/base/footer.html" %}
+
+      <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+         window.onscroll = function() {myFunction()};
+         
+         var header = document.getElementById("myHeader");
+         var sticky = header.offsetTop;
+         
+         function myFunction() {
+           if (window.pageYOffset > sticky) {
+             header.classList.add("sticky");
+           } else {
+             header.classList.remove("sticky");
+           }
+         }
+         
+      </script> 
+   </body>
+   <!-- Mirrored from www.phuketnight.net/m/contact_m.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Sep 2024 11:23:05 GMT -->
+</html>
