@@ -1,11 +1,21 @@
 from django.shortcuts import render
 
+
+from .models import LotteryResult
+
 from django.views.generic import TemplateView
 
 
 
 class HomePageView(TemplateView):
     template_name = "sevenline_main/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image
+        context["result_list"] = LotteryResult.objects.order_by("-date")[:12]
+        return context
+    
 
 
 class ContactPageView(TemplateView):
