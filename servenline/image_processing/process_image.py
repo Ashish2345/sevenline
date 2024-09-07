@@ -20,7 +20,7 @@ class ProcessImage():
         img_template = Image.open(img_path_template)
         
         font_large_med = ImageFont.truetype(self.font_path, 38)
-        font_large = ImageFont.truetype(self.font_path, 42)
+        font_large = ImageFont.truetype(self.font_path, 40)
         font_small = ImageFont.truetype(self.font_path, 38)
 
         # Create a drawing context
