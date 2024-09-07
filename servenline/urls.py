@@ -6,7 +6,7 @@ from .views import (HomePageView, ContactPageView, ServicePageView, GeneralPageV
                     IndexMPageView, HowtoplayPageView, MywalletplayPageView, ResultPageView,
                     ContactMPageView, Login2PageView, RegisterPageView, PassRstPageView,
                     AbsStat1PageView, AbsStat2PageView, AbsStat2UpPageView, AbsStat3PageView,
-                    Result1PageView, StatPageView
+                    Result1PageView, StatPageView, VipPaymentPageView
                     )
 
 app_name= "servenline"
@@ -41,6 +41,10 @@ urlpatterns = [
     path('abs_stat2.php', AbsStat2PageView.as_view(), name="abs_stat2"),
     path('abs_stat2up.php', AbsStat2UpPageView.as_view(), name="abs_stat2up"),
     path('abs_stat3.php', AbsStat3PageView.as_view(), name="abs_stat3"),
+
+    # Extra
+    path('vip_payment.php', VipPaymentPageView.as_view(), name="vip_payment"),
+
 
 
 

@@ -64,6 +64,11 @@ class MywalletplayPageView(TemplateView):
 class ResultPageView(TemplateView):
     template_name = "puketsite/result.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image
+        return context
+
 class ContactMPageView(TemplateView):
     template_name = "puketsite/help.html"
 
@@ -108,3 +113,8 @@ class AbsStat2UpPageView(TemplateView):
 
 class AbsStat3PageView(TemplateView):
     template_name = "general_pg/abs_stat3.html"
+
+
+class VipPaymentPageView(TemplateView):
+    template_name = "sevenline_main/vip_payment.html"
+
