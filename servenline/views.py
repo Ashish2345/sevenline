@@ -2,7 +2,8 @@ from django.shortcuts import render
 from datetime import datetime
 import random
 
-from .models import LotteryResult, XcrossPictureUpload, VIPPictureUpload
+from .models import (LotteryResult, XcrossPictureUpload, VIPPictureUpload, 
+                    PictureUpload1, PictureUpload2, PictureUpload3)
 
 from django.views.generic import TemplateView
 
@@ -35,6 +36,15 @@ class GeneralPageView(TemplateView):
 
 class PreviewTipsPageView(TemplateView):
     template_name = "sevenline_main/preview_tip.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["picture_1"] = PictureUpload1.objects.first().result_image if PictureUpload1.objects.first() else ""
+        context["picture_2"] = PictureUpload2.objects.first().result_image if PictureUpload2.objects.first() else ""
+        context["picture_3"] = PictureUpload3.objects.first().result_image if PictureUpload3.objects.first() else ""
+            
+       
+        return context
 
 class GraphTipsPageView(TemplateView):
     template_name = "sevenline_main/graph_tip.html"

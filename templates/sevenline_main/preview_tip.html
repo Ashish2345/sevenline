@@ -25,6 +25,19 @@
                   <br>
                   <img style="background-color:white;" src="{% static "image_content/pdf_final.png" %}" class="img-rounded" align="middle" alt="www.sevenlineinc.com" width="90%"> 
                   <br>
+                  {% if picture_1 %}
+                  <img style="background-color:white;" src="{{picture_1.url}}" class="img-rounded" align="middle" alt="www.sevenlineinc.com" width="90%"> 
+                  <br>{% endif %}
+                  {% if picture_2 %}
+
+                  <img style="background-color:white;" src="{{picture_2.url}}" class="img-rounded" align="middle" alt="www.sevenlineinc.com" width="90%"> 
+                  <br>
+                  {% endif %}
+                  {% if picture_3 %}
+                  <img style="background-color:white;" src="{{picture_3.url}}" class="img-rounded" align="middle" alt="www.sevenlineinc.com" width="90%"> 
+                  <br>
+                  {% endif %}
+                  
                </div>
                <br>
             </div>
