@@ -21,6 +21,8 @@ class HomePageView(TemplateView):
 class ContactPageView(TemplateView):
     template_name = "sevenline_main/contact_me.html"
 
+    
+
 
 class GeneralPageView(TemplateView):
     template_name = "sevenline_main/general/index.html"
@@ -53,9 +55,19 @@ class PwResetPageView(TemplateView):
 class IndexMPageView(TemplateView):
     template_name = "puketsite/indexm.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["next_result_count"] = LotteryResult.objects.order_by("-date").first().next_drawn_duration
+        return context
+
 
 class HowtoplayPageView(TemplateView):
     template_name = "puketsite/howtoplay.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["next_result"] = LotteryResult.objects.order_by("-date").first()
+        return context
 
 class MywalletplayPageView(TemplateView):
     template_name = "puketsite/mywallet.html"
@@ -71,6 +83,12 @@ class ResultPageView(TemplateView):
 
 class ContactMPageView(TemplateView):
     template_name = "puketsite/help.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image
+        context["result_list"] = LotteryResult.objects.order_by("-date")[:12]
+        return context
 
 class Login2PageView(TemplateView):
     template_name = "puketsite/login.html"

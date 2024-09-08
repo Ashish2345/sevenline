@@ -2,6 +2,9 @@ import datetime
 
 from django.db import models
 
+from datetime import timedelta
+from django.utils import timezone
+
 # Create your models here.
 
 def profile_directory_path(self, filename):
@@ -80,3 +83,25 @@ class LotteryResult(AuditFields):
     def get_three_up(self):
         len_first_prize = len(self.first_prize) - 3
         return self.first_prize[len_first_prize:]
+    
+    @property
+    def next_drawn_duration(self):
+        # Calculate the next drawn date as 7 days from the current date field
+        next_drawn_date = self.date + timedelta(days=7)
+        
+        if next_drawn_date:
+            # Combine the date with the minimum time to make it a datetime object
+            next_drawn_datetime = datetime.datetime.combine(next_drawn_date, datetime.datetime.min.time())
+            now = timezone.now()  # Current date and time
+            
+            delta = next_drawn_datetime - now
+            
+            # Convert the delta to hours and minutes
+            total_minutes = delta.total_seconds() // 60
+            hours = total_minutes // 60
+            minutes = total_minutes % 60
+
+            # Format in the form 'X hours : Y minutes'
+            return f"{int(hours)} hours : {int(minutes)} minutes"
+        
+        return None
