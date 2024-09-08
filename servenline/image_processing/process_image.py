@@ -60,11 +60,12 @@ class ProcessImage():
         draw = ImageDraw.Draw(image)
 
         # Load font (adjust path to a valid .ttf font on your system)
-       
-        font = ImageFont.truetype(self.font_path, 48)
-        font_date = ImageFont.truetype(self.font_path, 15)
-        font_watermark = ImageFont.truetype('arial.ttf', 30)  # Font for the watermark
-        
+        try:
+            font = ImageFont.truetype(self.font_path, 48)
+            font_date = ImageFont.truetype(self.font_path, 15)
+        except IOError:
+            font = ImageFont.load_default()
+
         # Function to draw rotated text
         def draw_rotated_text(draw, position, text, angle, font, fill):
             # Create a separate image for the text to rotate
