@@ -47,20 +47,27 @@ class PictureUpload3(AuditFields):
 
 class XcrossPictureUpload(AuditFields):
 
-    picture = models.FileField(upload_to="x_cross_pic",  null=True)
+    drawn_number = models.CharField(max_length=50,  null=True, blank=True)
+    picture = models.FileField(upload_to="x_cross_pic",  null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    
     class Meta:
         verbose_name_plural = 'X Cross Image'
 
 
 class VIPPictureUpload(AuditFields):
 
+    drawn_number = models.CharField(max_length=50,  null=True, blank=True)
     picture = models.FileField(upload_to="vip_pic",  null=True)
     is_active = models.BooleanField(default=True)
+    date = models.DateField(null=True, blank=True)
+
     
     class Meta:
         verbose_name_plural = 'Vip Picture Image'
+
+    def break_numbers(self):
+        return '-'.join(self.drawn_number)
+
 
 class LotteryResult(AuditFields):
     date = models.DateField()

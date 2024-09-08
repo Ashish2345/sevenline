@@ -1,19 +1,25 @@
 from django.shortcuts import render
+from datetime import datetime
+import random
 
-
-from .models import LotteryResult
+from .models import LotteryResult, XcrossPictureUpload, VIPPictureUpload
 
 from django.views.generic import TemplateView
 
 
+def generate_random_5_digit_number():
+    return ''.join(str(random.randint(1, 9)) for _ in range(5))
 
 class HomePageView(TemplateView):
     template_name = "sevenline_main/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image
+        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image if LotteryResult.objects.order_by("-date") else ""
         context["result_list"] = LotteryResult.objects.order_by("-date")[:12]
+            
+        context["latest_x_cross"] = XcrossPictureUpload.objects.first().picture if XcrossPictureUpload.objects.first() else ""
+        context["latest_sasima"] = VIPPictureUpload.objects.first() if VIPPictureUpload.objects.first() else ""
         return context
     
 

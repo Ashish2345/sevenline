@@ -48,10 +48,10 @@ class ProcessImage():
         return img_io
 
 
-    def sasima_img_generate(self):
+    def sasima_img_generate(self,date, random_generate):
 
         # Load the original image
-        image_path = 'sasima.jpg'  # The original image you uploaded
+        image_path = os.path.join(settings.BASE_DIR, 'servenline', 'image_processing', 'sasima.jpg')
 
         # Open the image
         image = Image.open(image_path)
@@ -61,9 +61,8 @@ class ProcessImage():
 
         # Load font (adjust path to a valid .ttf font on your system)
         try:
-            font_path = "Sanujfont.ttf"
-            font = ImageFont.truetype(font_path, 48)
-            font_date = ImageFont.truetype(font_path, 15)
+            font = ImageFont.truetype(self.font_path, 48)
+            font_date = ImageFont.truetype(self.font_path, 15)
             font_watermark = ImageFont.truetype('arial.ttf', 30)  # Font for the watermark
         except IOError:
             font = ImageFont.load_default()
@@ -81,10 +80,10 @@ class ProcessImage():
 
         # Define text positions, content, and angles based on your second image
         positions = {
-            "5": ((25, 20), -10),  # Rotated slightly to the left
-            "7": ((180, 20), -10),  # Rotated slightly to the right
-            "2": ((25, 100), -10),  # Rotated slightly to the left
-            "8": ((180, 100), -10),  # Rotated slightly to the right
+            random_generate[0]: ((25, 20), -10),  # Rotated slightly to the left
+            random_generate[1]: ((180, 20), -10),  # Rotated slightly to the right
+            random_generate[2]: ((25, 100), -10),  # Rotated slightly to the left
+            random_generate[3]: ((180, 100), -10),  # Rotated slightly to the right
             "date": ((100, 138), 0),  # Bottom center with no rotation
             "watermark": ((0, 80), 25)  # Position of watermark
         }
@@ -95,24 +94,29 @@ class ProcessImage():
         watermark_color = (255, 165, 0)  # Orange color for the watermark
 
         # Draw the numbers with rotation
-        draw_rotated_text(draw, positions["5"][0], "5", positions["5"][1], font, text_color)
-        draw_rotated_text(draw, positions["7"][0], "7", positions["7"][1], font, text_color)
-        draw_rotated_text(draw, positions["2"][0], "2", positions["2"][1], font, text_color)
-        draw_rotated_text(draw, positions["8"][0], "8", positions["8"][1], font, text_color)
+        draw_rotated_text(draw, positions[random_generate[0]][0], random_generate[0], positions[random_generate[0]][1], font, text_color)
+        draw_rotated_text(draw, positions[random_generate[1]][0], random_generate[1], positions[random_generate[1]][1], font, text_color)
+        draw_rotated_text(draw, positions[random_generate[2]][0], random_generate[2], positions[random_generate[2]][1], font, text_color)
+        draw_rotated_text(draw, positions[random_generate[3]][0], random_generate[3], positions[random_generate[3]][1], font, text_color)
 
         # Draw the date without rotation
-        draw.text(positions["date"][0], "2024-09-16", fill=date_color, font=font_date)
+        draw.text(positions["date"][0], date, fill=date_color, font=font_date)
 
-    def x_cross_img(self):
-        # Load the original image
-        original_image_path = "x_cross[1].jpg"
+        # Save the edited image
+        img_io = BytesIO()
+        image.save(img_io, format='PNG')
+        img_io.seek(0)
+
+        return img_io
+    
+    def x_cross_img(self,date, random_generate):
+        original_image_path = os.path.join(settings.BASE_DIR, 'servenline', 'image_processing', 'x_cross[1].jpg')
+
         image = Image.open(original_image_path)
 
-        # Define font for numbers and date with decreased size and bold weight
         try:
-            custom_font_path = "Sanujfont.ttf"  # Replace with the path to your custom font file
-            font = ImageFont.truetype(custom_font_path, 105)  # Custom font, bold, smaller size
-            date_font = ImageFont.truetype(custom_font_path, 40)  # Custom font, bold for date
+            font = ImageFont.truetype(self.font_path, 105)  # Custom font, bold, smaller size
+            date_font = ImageFont.truetype(self.font_path, 35)  # Custom font, bold for date
         except IOError:
             font = ImageFont.load_default()
             date_font = ImageFont.load_default()
@@ -122,11 +126,11 @@ class ProcessImage():
         square_size = image_width // 3  # Assuming a 3x3 grid
 
         positions = {
-            "0": (square_size // 2, square_size // 2),
-            "3": (2 * square_size + square_size // 2, square_size // 2),
-            "2": (square_size + square_size // 2, square_size + square_size // 2),
-            "5": (square_size // 2, 2 * square_size + square_size // 2),
-            "1": (2 * square_size + square_size // 2, 2 * square_size + square_size // 2),
+            random_generate[0]: (square_size // 2, square_size // 2),
+            random_generate[1]: (2 * square_size + square_size // 2, square_size // 2),
+            random_generate[2]: (square_size + square_size // 2, square_size + square_size // 2),
+            random_generate[3]: (square_size // 2, 2 * square_size + square_size // 2),
+            random_generate[4]: (2 * square_size + square_size // 2, 2 * square_size + square_size // 2),
         }
 
         # Create a drawing object
@@ -141,7 +145,7 @@ class ProcessImage():
             draw.text(centered_position, number, font=font, fill="black")
 
         # Draw the date at the bottom center
-        date_text = "2024-09-01"
+        date_text = date
         date_bbox = draw.textbbox((0, 0), date_text, font=date_font)
         date_width = date_bbox[2] - date_bbox[0]
         date_height = date_bbox[3] - date_bbox[1]
@@ -149,10 +153,11 @@ class ProcessImage():
         draw.text(date_position, date_text, font=date_font, fill="black")
 
         # Save the edited image
-        edited_image_path = "x_cross_edited.jpg"
-        image.save(edited_image_path)
+        img_io = BytesIO()
+        image.save(img_io, format='PNG')
+        img_io.seek(0)
 
-        print(f"Edited image saved as {edited_image_path}")
+        return img_io
 
 
 
