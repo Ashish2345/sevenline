@@ -39,9 +39,9 @@ class PreviewTipsPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["picture_1"] = PictureUpload1.objects.first().result_image if PictureUpload1.objects.first() else ""
-        context["picture_2"] = PictureUpload2.objects.first().result_image if PictureUpload2.objects.first() else ""
-        context["picture_3"] = PictureUpload3.objects.first().result_image if PictureUpload3.objects.first() else ""
+        context["picture_1"] = PictureUpload1.objects.first().picture if PictureUpload1.objects.first() else ""
+        context["picture_2"] = PictureUpload2.objects.first().picture if PictureUpload2.objects.first() else ""
+        context["picture_3"] = PictureUpload3.objects.first().picture if PictureUpload3.objects.first() else ""
             
        
         return context
