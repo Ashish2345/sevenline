@@ -327,7 +327,7 @@
                <br>
                <div id="rcorners2">
                   <div class="login-form">
-                     <form method="POST">
+                     
                         <h2 class="text-center">Log-in</h2>
                         <div class="form-group">
                            <input type="text" class="form-control" placeholder="Email address" name="gmail" required="required">
@@ -336,9 +336,9 @@
                            <input type="password" class="form-control" placeholder="Password" name="gpass" required="required">
                         </div>
                         <div class="form-group">
-                           <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                           <button type="submit" class="btn btn-primary btn-block" onclick="btn_login()">Log in</button>
                         </div>
-                     </form>
+                        
                   </div>
                   <br>
                </div>
@@ -347,5 +347,25 @@
       </div>
       <hr>
       {% include "sevenline_main/base/footer.html" %}
+      <script>
+         function btn_login(){
+            let html = `
+            <center><h3>Make payment for VIPs tips pages.</h3>
+   <br>
+                        Go to:<a href="https://www.sixline.com/general/index.php">General free tips</a>
+   </center>
+            `
+            let rcorners_login = document.getElementById("rcorners2")
+            rcorners_login.innerHTML = html
+         }
+
+
+         
+
+         
+         btn_id
+      </script>
+
+
    </body>
 </html>
