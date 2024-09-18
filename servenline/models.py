@@ -25,6 +25,7 @@ class PictureUpload1(AuditFields):
     is_active = models.BooleanField(default=True)
     
     class Meta:
+        ordering = ["-created_date"]
         verbose_name_plural = 'Picture Upload 1'
 
 class PictureUpload2(AuditFields):
@@ -33,6 +34,7 @@ class PictureUpload2(AuditFields):
     is_active = models.BooleanField(default=True)
     
     class Meta:
+        ordering = ["-created_date"]
         verbose_name_plural = 'Picture Upload 2'
 
 
@@ -42,6 +44,7 @@ class PictureUpload3(AuditFields):
     is_active = models.BooleanField(default=True)
     
     class Meta:
+        ordering = ["-created_date"]
         verbose_name_plural = 'Picture Upload 3'
 
 
