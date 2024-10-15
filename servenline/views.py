@@ -129,6 +129,12 @@ class Result1PageView(TemplateView):
     template_name = "general_pg/result.html"
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["result_img"] = LotteryResult.objects.order_by("-date").first().result_image if LotteryResult.objects.order_by("-date") else ""
+        context["result_list"] = LotteryResult.objects.order_by("-date")[:12]
+            
+        return context
 
 
 class StatPageView(TemplateView):
