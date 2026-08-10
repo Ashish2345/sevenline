@@ -8,7 +8,7 @@ from django.contrib.auth import password_validation
 from django.core.validators import MaxValueValidator
 
 from .models import Profile, User
-from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 
 from difflib import SequenceMatcher
 
