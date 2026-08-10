@@ -1,12 +1,9 @@
 *.pyc
 __pycache__/
-migrations
 stacticcdn
 .idea/
 credentials.yaml/
 credentials.yaml
-settings.py/
-settings.py
 db.sqlite3
 db.json
 venv/
@@ -36,3 +33,10 @@ debug
 .DS_Store
 exception.log
 exception.log/
+
+# --- deployment ------------------------------------------------------------
+# settings.py and migrations/ used to be ignored here. They are source code and
+# a fresh `git clone` on the deploy VM cannot run without them, so they are now
+# tracked. Secrets live in credentials.yaml, which stays ignored below.
+credentials.docker.yaml
+credentials.prod.yaml

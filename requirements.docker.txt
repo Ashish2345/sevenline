@@ -1,0 +1,47 @@
+# Docker requirements for 7line / sevenline.
+#
+# requirements.txt cannot be installed as-is: it is two concatenated pin sets,
+# so pip aborts with "Double requirement given: Django==5.1.5 (already in
+# Django==5.0)". This file keeps the second (newer) set, which is also the one
+# that matches ../venv/Lib/site-packages.
+
+Django==5.1.5
+asgiref==3.8.1
+sqlparse==0.5.3
+tzdata==2024.2
+
+# Database
+mysqlclient==2.2.7
+
+# Django apps referenced by INSTALLED_APPS / imported by the code
+crispy-bootstrap5==2024.10
+django-crispy-forms==2.3
+django-braces==1.16.0
+django-recaptcha==4.0.0
+django-axes==7.0.1
+django-ratelimit==4.1.0
+
+# accounts/encryption.py: `from cryptography.fernet import Fernet`
+cryptography==44.0.0
+cffi==1.17.1
+pycparser==2.22
+
+# accounts/views.py fuzzy matching
+fuzzywuzzy==0.18.0
+
+python-dateutil==2.9.0.post0
+six==1.17.0
+
+# servenline/image_processing/process_image.py
+pillow==11.1.0
+
+# accounts/utils.py rate limiter
+redis==5.2.1
+
+# settings.py reads credentials.yaml at import time
+PyYAML==6.0.2
+
+setuptools==75.8.0
+
+# Production WSGI server (docker-compose.prod.yml runs this instead of runserver)
+gunicorn==23.0.0

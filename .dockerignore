@@ -1,0 +1,12 @@
+venv/
+env/
+.git/
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+db.sqlite3
+*.log
+
+# Bind-mounted at runtime, never baked into the image.
+media/
